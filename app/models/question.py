@@ -15,7 +15,7 @@ class Question(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False)
 
 # relationship attributes
-    user = db.relationship("User", back_populates="quesions")
+    user = db.relationship("User", back_populates="questions")
     answers = db.relationship("Answer", back_populates='question', cascade="all, delete")
 
 #####################################
