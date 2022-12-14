@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+import random
 
 class Question(db.Model):
     __tablename__ = "questions"
@@ -19,12 +20,6 @@ class Question(db.Model):
     answers = db.relationship("Answer", back_populates='question', cascade="all, delete")
 
 #####################################
-    # def get_avgstars(self):
-    #     if len(self.reviews)>0:
-    #         avg=sum(d.stars for d in self.reviews)/ len(self.reviews)
-    #         return round(avg,1)
-    #     else:
-    #         return 0.00
 
     def to_dict(self):
         return {
@@ -37,17 +32,48 @@ class Question(db.Model):
             'updateAt': self.updated_at,
         }
 
-    # def to_dict_search(self):
-    #     return {
-    #         'id': self.id,
-    #         'category': self.category,
-    #         'name': self.name,
-    #         'description': self.description,
-    #         'price': self.price,
-    #         'stock': self.stock,
-    #         'sellerId': self.seller_id,
-    #         'previewImage': self.images[0].url,
-    #         'avgRating': self.get_avgstars(),
-    #         'numReviews': len(self.reviews),
-    #         'storeName': self.user.username
-    #     }
+    def to_dict_all_questions(self):
+        return {
+            'id': self.id,
+            'ownerId': self.owner_id,
+            'title': self.title,
+            'body': self.body,
+            'category': self.category,
+            'userName': self.user.username,
+            'profileImg': self.user.profilepic_url,
+            'votesNum': random.randint(0,10),
+            'answersNum': len(self.answers),
+            'createdAt': self.created_at,
+            'updateAt': self.updated_at,
+        }
+
+    def to_dict_my_questions(self):
+        return {
+            'id': self.id,
+            'ownerId': self.owner_id,
+            'title': self.title,
+            'body': self.body,
+            'category': self.category,
+            'votesNum': random.randint(0,10),
+            'answersNum': len(self.answers),
+            'createdAt': self.created_at,
+            'updateAt': self.updated_at,
+        }
+
+    def to_dict_single_question(self):
+        return {
+            'id': self.id,
+            'ownerId': self.owner_id,
+            'title': self.title,
+            'body': self.body,
+            'category': self.category,
+            'userName': self.user.username,
+            'profileImg': self.user.profilepic_url,
+            'votesNum': random.randint(0,10),
+            'answersNum': len(self.answers),
+            'createdAt': self.created_at,
+            'updateAt': self.updated_at,
+            'Answers': [
+                answer.to_dict() for answer in self.answers
+            ]
+        }
