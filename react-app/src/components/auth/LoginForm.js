@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const LoginForm = () => {
@@ -18,6 +18,18 @@ const LoginForm = () => {
     }
   };
 
+  const DemoUser = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    const demoEmail = "demo@gmail.com";
+    const demoPassword = "demo_user";
+    return dispatch(login(demoEmail, demoPassword)).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      })
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -31,6 +43,8 @@ const LoginForm = () => {
   }
 
   return (
+    <>
+
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error, ind) => (
@@ -45,6 +59,7 @@ const LoginForm = () => {
           placeholder='Email'
           value={email}
           onChange={updateEmail}
+          required
         />
       </div>
       <div>
@@ -55,10 +70,16 @@ const LoginForm = () => {
           placeholder='Password'
           value={password}
           onChange={updatePassword}
+          required
         />
         <button type='submit'>Login</button>
+        <button onClick={DemoUser}>DemoUser</button>
       </div>
     </form>
+    <div>Don’t have an account?
+      <Link style={{ textDecoration: "none", color: "blue" }} to={`/sign-up`}>Sign up</Link>
+    </div>
+    </>
   );
 };
 

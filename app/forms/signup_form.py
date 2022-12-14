@@ -21,9 +21,10 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 
+
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists, Length(max=255, message="Username must be less than 255 characters")])
     email = StringField('email', validators=[DataRequired(), user_exists, Length(max=255, message="Email must be less than 255 characters"), Email()])
-    password = StringField('password', validators=[DataRequired()])
-    url = URLField('url', validators=[InputRequired()])
+    password = StringField('password', validators=[DataRequired(), Length(min=6, max=255, message="Password must be between 6 to 255 characters")])
+    # url = URLField('url', validators=[InputRequired()])

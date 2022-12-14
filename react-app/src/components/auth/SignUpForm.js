@@ -8,6 +8,7 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [url, setUrl] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+        setErrors(["Please confirm the Repeat Password"])
     }
   };
 
@@ -28,6 +31,10 @@ const SignUpForm = () => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateUrl = (e) => {
+    setUrl(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -50,7 +57,7 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        <label>Display Name</label>
         <input
           type='text'
           name='username'
@@ -67,6 +74,14 @@ const SignUpForm = () => {
           value={email}
         ></input>
       </div>
+      {/* <div>
+        <label>ProfileImage</label>
+        <input
+          name='profile_image'
+          onChange={updateUrl}
+          value={url}
+        ></input>
+      </div> */}
       <div>
         <label>Password</label>
         <input
@@ -86,6 +101,7 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
+
       <button type='submit'>Sign Up</button>
     </form>
   );
