@@ -27,7 +27,7 @@ def seed_questions():
         updated_at=datetime.now()
     )
     question4 = Question(
-        owner_id=1,
+        owner_id=2,
         title="What is the main difference between the BOM and the DOM",
         body="I am confused about the differance between BOM and DOM when render the webstite",
         category="html",
@@ -35,7 +35,7 @@ def seed_questions():
         updated_at=datetime.now()
     )
     question5 = Question(
-        owner_id=1,
+        owner_id=3,
         title="What's the difference between asynchronous and synchronous code?",
         body="Could somebody provide one example of an asynchronous function in JavaScript.",
         category="javascript",
@@ -43,7 +43,7 @@ def seed_questions():
         updated_at=datetime.now()
     )
     question6 = Question(
-        owner_id=1,
+        owner_id=4,
         title="What role the 'message queue' plays in the event loop?",
         body="JavaScript uses an event loop model for execution. Describe what role the 'message queue' plays in the event loop.",
         category="javascript",

@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import AllQuestions from './components/questions/AllQuestions';
+import TopQuestions from './components/questions/TopQuestions';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -28,6 +30,12 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/questions' exact={true}>
+          <AllQuestions />
+        </Route>
+        <Route path='/home' exact={true}>
+          <TopQuestions />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -43,6 +51,7 @@ function App() {
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
         </Route>
+
       </Switch>
     </BrowserRouter>
   );

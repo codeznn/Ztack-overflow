@@ -18,7 +18,7 @@ def get_my_answers():
     ]}, 200
 
 # update an answer
-@answer_routes.route("/<int:answer_id>", method=["PUT"])
+@answer_routes.route("/<int:answer_id>", methods=["PUT"])
 @login_required
 def update_answer(answer_id):
     form = AnswerForm()
@@ -44,7 +44,7 @@ def update_answer(answer_id):
 
 
 # delete an answer
-@answer_routes.route("/<int:answer_id>", method=["DELETE"])
+@answer_routes.route("/<int:answer_id>", methods=["DELETE"])
 @login_required
 def delete_answer(answer_id):
     deleted_answer = Answer.query.get(answer_id)
@@ -61,7 +61,7 @@ def delete_answer(answer_id):
 
 
 # upvote/downvote an answer
-@answer_routes.route("/<int:answer_id>/votes", method=["POST"])
+@answer_routes.route("/<int:answer_id>/votes", methods=["POST"])
 @login_required
 def vote_answer(answer_id):
     answer = Answer.query.ger(answer_id)
@@ -74,9 +74,13 @@ def vote_answer(answer_id):
 
     if vote:
         if vote.isVote == True and form.data["isVote"] == True:
-            return {"errors": "You cannot upvote the answer twice!"}, 403
+            db.session.delete(vote)
+            db.session.commit()
+            return {"messages": "Vote has been deleted successfully!"}, 200
         elif vote.isVote == False and form.data["isVote"] == False:
-            return {"errors": "You cannot downvote the answer twice!"}, 403
+            db.session.delete(vote)
+            db.session.commit()
+            return {"messages": "Vote has been deleted successfully!"}, 200
         else:
             vote = Vote(
                 isVote = form.data["isVote"]
@@ -85,7 +89,7 @@ def vote_answer(answer_id):
             return vote.to_dict(), 201
     else:
         new_vote = Vote(
-            user_id = current_user.__id,
+            user_id = current_user.id,
             answer_id = answer_id,
             isVote = form.data["isVote"]
         )

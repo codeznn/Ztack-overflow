@@ -9,12 +9,12 @@ from .auth_routes import validation_errors_to_error_messages
 question_routes = Blueprint('questions', __name__)
 
 # get all questions
-@question_routes.route("/")
+@question_routes.route("/all")
 def get_all_questions():
     questions = Question.query.all()
     return {
         "Questions":[
-            question.to_dict_all_questions for question in questions
+            question.to_dict_all_questions() for question in questions
         ]
     }
 
@@ -22,9 +22,10 @@ def get_all_questions():
 @question_routes.route("/top")
 def get_top_questions():
     questions = Question.query.order_by(Question.created_at.desc()).all()
+    print("======in questions_routes-topquestions:", questions)
     return {
         "Questions":[
-            question.to_dict_all_questions for question in questions
+            question.to_dict_all_questions() for question in questions
         ]
     }
 
@@ -32,11 +33,8 @@ def get_top_questions():
 @question_routes.route("/search/<keyword>")
 def get_search_questions(keyword):
     questions = Question.query.filter(Question.title.ilike(f"%{keyword}%")).all()
-    return {
-        "Questions":[
-            question.to_dict_all_questions for question in questions
-        ]
-    }
+    return { "Questions":[
+            question.to_dict_all_questions() for question in questions] }
 
 # get questions of currentUser
 @question_routes.route("/current")
@@ -45,7 +43,7 @@ def get_my_questions():
     questions = Question.query.filter(Question.owner_id == current_user.id).all()
     return {
         "Questions":[
-            question.to_dict_my_questions for question in questions
+            question.to_dict_my_questions() for question in questions
         ]
     }
 
