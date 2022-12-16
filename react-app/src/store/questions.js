@@ -1,5 +1,6 @@
 const LOAD_ALL_QUESTIONS = 'questions/loadallquestions';
 const LOAD_TOP_QUESTIONS = 'questions/loadtopquestions';
+const LOAD_SEARCH_QUESTIONS = 'questions/loadsearchquestions';
 const LOAD_ONE_QUESTION = 'questions/loadonequestion';
 const CREATE_QUESTION = 'questions/createquestion';
 const ADD_IMG = 'questions/addimg';
@@ -20,13 +21,16 @@ const topQuestions = (questions) => ({
     questions
 })
 
+const searchQuestions = (questions) => ({
+    type: LOAD_SEARCH_QUESTIONS,
+    questions
+})
+
 export const getAllQuestions = () => async (dispatch) =>  {
-    console.log("======in Reducer")
     const response = await fetch('/api/questions/all')
 
     if (response.ok) {
         const questions = await response.json();
-        console.log("======in Reducer-questions", questions)
         dispatch(allQuestions(questions))
         return questions
     }
@@ -38,8 +42,19 @@ export const getTopQuestions = () => async (dispatch) =>  {
 
     if (response.ok) {
         const questions = await response.json();
-        console.log("======in Reducer-questions", questions)
         dispatch(topQuestions(questions))
+        return questions
+    }
+}
+
+export const getSearchQuestions = (keyword) => async (dispatch) => {
+    console.log("======in Reducer")
+    const response = await fetch(`/api/questions/search/${keyword}`)
+
+    if (response.ok) {
+        const questions = await response.json();
+        console.log("======in Reducer-questions", questions)
+        dispatch(searchQuestions(questions))
         return questions
     }
 }
@@ -48,6 +63,7 @@ export const getTopQuestions = () => async (dispatch) =>  {
 const initialState = {
     allQuestions: {},
     topQuestions: {},
+    searchQuestions: {},
     singleQuestion: {},
 }
 
@@ -64,6 +80,13 @@ const questions = (state = initialState, action) => {
             newState = { ...state, topQuestions: { ...state.topQuestions}}
             action.questions.Questions.forEach(question => {
                 newState.topQuestions[question.id] = question
+            })
+            return newState;
+
+        case LOAD_TOP_QUESTIONS:
+            newState = { ...state, searchQuestions: { ...state.searchQuestions}}
+            action.questions.Questions.forEach(question => {
+                newState.searchQuestions[question.id] = question
             })
             return newState;
 
