@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, Link } from "react-router-dom";
-import questions, { getOneQuestion } from '../../store/questions';
+import questions, { getOneQuestion, removeOneQuestion } from '../../store/questions';
 
 import './SingleQuestion.css'
 
@@ -50,7 +50,16 @@ const SingleQuestion = () => {
     }
 
     const handleAskClick = () => {
-        return history.push('/new-questions')
+        return history.push('/questions/new')
+    }
+
+    const deleteQuestionClick = async() => {
+        if (window.confirm("Are you sure you want to delete this question?")){
+            const response = await dispatch(removeOneQuestion(questionId))
+            if (response) {
+                history.push('/home')
+            }
+        }
     }
 
     return (
@@ -73,8 +82,8 @@ const SingleQuestion = () => {
                 {sessionUser && sessionUser.id == question.ownerId
                 ?
                 <div>
-                    <Link to={`/questions/new-question`} style={{ textDecoration: 'none'}}>Edit </Link>
-                    <Link to={`/questions/delete`} style={{ textDecoration: 'none'}}>Delete</Link>
+                    <Link to={`/questions/${questionId}/edit`} style={{ textDecoration: 'none'}} >Edit </Link>
+                    <button type='button' onClick={deleteQuestionClick}>Delete</button>
                 </div>
                 :
                 null

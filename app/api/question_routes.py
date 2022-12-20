@@ -88,6 +88,7 @@ def create_question():
 def update_question(question_id):
     form = QuestionForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+    # print("============in quetion_routes-update:")
 
     edit_question = Question.query.get(question_id)
 
@@ -98,10 +99,8 @@ def update_question(question_id):
         return {"errors": "You are not the owner of this question."}, 403
 
     if form.validate_on_submit():
-        edit_question.title = form.data["title"],
-        edit_question.body = form.data["body"],
-        edit_question.created_at = datetime.now(),
-        edit_question.updated_at = datetime.now()
+        edit_question.title = form.data["title"]
+        edit_question.body = form.data["body"]
 
         db.session.commit()
         return edit_question.to_dict(), 200
@@ -115,9 +114,9 @@ def update_question(question_id):
 def delete_question(question_id):
     deleted_question = Question.query.get(question_id)
 
-    if delete_question:
-        if delete_question.owner_id == current_user.id:
-            db.session.delete(delete_question)
+    if deleted_question:
+        if deleted_question.owner_id == current_user.id:
+            db.session.delete(deleted_question)
             db.session.commit()
 
             return {"messages": "Question has been deleted successfully!"}, 200

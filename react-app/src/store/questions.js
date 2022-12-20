@@ -34,6 +34,16 @@ const addQuestion = (question) => ({
     question
 })
 
+const updateQuestion = (question) => ({
+    type: UPDATE_QUESTION,
+    question
+})
+
+const removeQuestion = (questionId) => ({
+    type: REMOVE_QUESTION,
+    questionId
+})
+
 export const getAllQuestions = () => async (dispatch) =>  {
     const response = await fetch('/api/questions/all')
 
@@ -76,7 +86,6 @@ export const getOneQuestion = (id) => async (dispatch) => {
 }
 
 export const addOneQustion = (question) => async (dispatch) => {
-    console.log("======in Reducer")
     try {
         const response = await fetch(`/api/questions`, {
             method: "POST",
@@ -88,7 +97,6 @@ export const addOneQustion = (question) => async (dispatch) => {
 
         if (response.ok) {
             const newQuestion = await response.json();
-            console.log("======in Reducer-newQuestion", newQuestion)
             dispatch(addQuestion(newQuestion));
             return newQuestion
         }
@@ -97,6 +105,41 @@ export const addOneQustion = (question) => async (dispatch) => {
         throw error
     }
 
+}
+
+export const updateOneQuestion = (question, questionId) => async (dispatch) => {
+
+    try {
+        const response = await fetch(`/api/questions/${questionId}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(question)
+        });
+
+        if (response.ok) {
+            const newQuestion = await response.json();
+            console.log("======in Reducer-newQuestion", newQuestion)
+            dispatch(updateQuestion(newQuestion));
+            return newQuestion
+        }
+
+    } catch(error) {
+        throw error
+    }
+}
+
+export const removeOneQuestion = (questionId) => async (dispatch) => {
+    console.log("======in Reducer", questionId)
+    const response = await fetch(`/api/questions/${questionId}`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        dispatch(removeQuestion(questionId))
+        return ("Qustion has been deleted successully!")
+    }
 }
 
 
@@ -136,6 +179,18 @@ const questions = (state = initialState, action) => {
 
         case CREATE_QUESTION:
             newState = { ...state, allQuestions: { ...state.allQuestions, [action.question.id]: action.question} };
+            return newState
+
+        case UPDATE_QUESTION:
+            newState = { ...state, allQuestions: { ...state.allQuestions, [action.question.id]: action.question}}
+            return newState
+
+        case REMOVE_QUESTION:
+            newState = { ...state, allQuestions: { ... state.allQuestions}, topQuestions: { ... state.topQuestions}}
+            //delete newState.allQuestions[action.questionId]
+            delete newState.topQuestions[action.questionId]
+            newState.singleQuestion = {}
+            newState.allQuestions = {}
             return newState
 
         default:

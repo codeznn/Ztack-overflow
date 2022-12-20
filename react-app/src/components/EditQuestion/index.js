@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addOneQustion } from "../../store/questions";
 
-import './CreateQuestion.css';
+import './editQuestion.css'
+import { getAllQuestions, updateOneQuestion } from "../../store/questions";
 
-const CreateQuestion = () => {
+const EditQuestion = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const sessionUser = useSelector(state => state.session.user)
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+    const { questionId } = useParams();
+    const question = useSelector((state) => state.questions.allQuestions[questionId])
+    const [title, setTitle] = useState(question?.title);
+    const [body, setBody] = useState(question?.body);
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-
-    if (!sessionUser) {
-        alert("You need to be logged in first!")
-        history.push('/login')
-    }
+    useEffect(() => {
+        dispatch(getAllQuestions())
+    }, [dispatch]);
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -33,37 +32,35 @@ const CreateQuestion = () => {
         if (body.length > 200000) errors.push('Body exceeds 200000 characters limit!')
         setErrors(errors)
 
-        console.log("=== in createQustion component-error:", errors)
+        console.log("=== in editQustion component-error:", errors)
 
         if (errors.length > 0) {
             return
         }
 
         const question = { title, body }
-        console.log("=== in createQustion component-question:", question)
+        console.log("=== in editQustion component-question:", question)
 
-        const response = await dispatch(addOneQustion(question))
+        const response = await dispatch(updateOneQuestion(question, questionId))
 
-        console.log("=== in createQustion component-response:", response)
+        console.log("=== in editQustion component-response:", response)
         if (response){
-            history.push(`/questions/${response.id}`)
+            history.push(`/questions/${questionId}`)
         }
 
         setTitle('')
         setBody('')
         setErrors([])
         setHasSubmitted(false)
-
     }
 
     const handleCancelClick = () => {
-        return history.push('/');
-    };
-
+        history.push(`/questions/${questionId}`)
+    }
 
     return (
         <div className="create-question-wrapper">
-            <h1>Ask a public question</h1>
+            <h1>Edit your question</h1>
             <form className="create-question-form" onSubmit={handleSubmit}>
             <div className="create-question-title">
                 <div className="create-question-title-head">Title</div>
@@ -104,7 +101,8 @@ const CreateQuestion = () => {
             </div>
 
             <div className="create-question-button">
-                <button type="submit">Post your question</button>
+                <button type="submit">Save edits</button>
+                <button type="button" onClick={handleCancelClick}>cancel</button>
             </div>
             </form>
 
@@ -112,4 +110,4 @@ const CreateQuestion = () => {
     )
 }
 
-export default CreateQuestion;
+export default EditQuestion
