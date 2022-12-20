@@ -3,11 +3,9 @@ const LOAD_TOP_QUESTIONS = 'questions/loadtopquestions';
 const LOAD_SEARCH_QUESTIONS = 'questions/loadsearchquestions';
 const LOAD_ONE_QUESTION = 'questions/loadonequestion';
 const CREATE_QUESTION = 'questions/createquestion';
-const ADD_IMG = 'questions/addimg';
 const UPDATE_QUESTION = 'questions/updatequestion';
 const REMOVE_QUESTION = 'questions/deletequestion';
 const MY_QUESTIONS = 'questions/myquestion';
-const RESET_QUESTIONS = 'questions/RESET_QUESTIONS'
 const SEARCH_QUESTIONS = 'questions/searchedquestions';
 
 
@@ -28,6 +26,11 @@ const searchQuestions = (questions) => ({
 
 const oneQuestion = (question) => ({
     type: LOAD_ONE_QUESTION,
+    question
+})
+
+const addQuestion = (question) => ({
+    type: CREATE_QUESTION,
     question
 })
 
@@ -62,15 +65,38 @@ export const getSearchQuestions = (keyword) => async (dispatch) => {
 }
 
 export const getOneQuestion = (id) => async (dispatch) => {
-    console.log("======in Reducer")
+
     const response = await fetch(`/api/questions/${id}`)
 
     if (response.ok) {
         const question = await response.json();
-        console.log("======in Reducer-questions", question)
         dispatch(oneQuestion(question))
         return question
     }
+}
+
+export const addOneQustion = (question) => async (dispatch) => {
+    console.log("======in Reducer")
+    try {
+        const response = await fetch(`/api/questions`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(question)
+        });
+
+        if (response.ok) {
+            const newQuestion = await response.json();
+            console.log("======in Reducer-newQuestion", newQuestion)
+            dispatch(addQuestion(newQuestion));
+            return newQuestion
+        }
+
+    } catch(error) {
+        throw error
+    }
+
 }
 
 
@@ -107,6 +133,10 @@ const questions = (state = initialState, action) => {
         case LOAD_ONE_QUESTION:
             newState = { ...state, singleQuestion: { ...action.question}}
             return newState;
+
+        case CREATE_QUESTION:
+            newState = { ...state, allQuestions: { ...state.allQuestions, [action.question.id]: action.question} };
+            return newState
 
         default:
             return state

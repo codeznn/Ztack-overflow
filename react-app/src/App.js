@@ -12,6 +12,7 @@ import AllQuestions from './components/questions/AllQuestions';
 import TopQuestions from './components/questions/TopQuestions';
 import HomePage from './components/HomePage';
 import SingleQuestion from './components/SingleQuestion';
+import CreateQuestion from './components/CreateQuestion';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,7 +49,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/new-questions' exact={true}>
-          <SignUpForm />
+          <CreateQuestion />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

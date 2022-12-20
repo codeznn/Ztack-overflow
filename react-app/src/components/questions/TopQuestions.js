@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import { getAllQuestions, getTopQuestions } from '../../store/questions';
 
@@ -7,6 +8,7 @@ import "./questions.css";
 
 const TopQuestions = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const questionObj = useSelector(state => state.questions.topQuestions)
     const questionArr = Object.values(questionObj).reverse()
     const totalNum = questionArr.length
@@ -45,13 +47,18 @@ const TopQuestions = () => {
 
     }
 
+
+    const handleAskClick = () => {
+        return history.push('/new-questions')
+    }
+
     if (!questionObj) return null;
 
     return (
         <div className='questions-container'>
             <div className='questions-top'>
                 <h1>Top Questions</h1>
-                <button>Ask Question</button>
+                <button type='button' onClick={handleAskClick}>Ask Question</button>
             </div>
             <div className='questions-total-num'>{totalNum} questions</div>
             <div className='questions-single-container'>

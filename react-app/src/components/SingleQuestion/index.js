@@ -9,6 +9,7 @@ const SingleQuestion = () => {
     const { questionId } = useParams();
     //console.log("======in singleQuestion components-questionId:", questionId)
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user)
     const question = useSelector(state => state.questions.singleQuestion)
     //console.log("======in singleQuestion components-question:", question)
@@ -48,12 +49,16 @@ const SingleQuestion = () => {
 
     }
 
+    const handleAskClick = () => {
+        return history.push('/new-questions')
+    }
+
     return (
         <div className='single-question-wrapper'>
             <div className='single-question-upper'>
                 <div className='single-question-title'>{question.title}</div>
                 <div className='single-question-askbutton'>
-                    <button>Ask Question</button>
+                    <button type='button' onClick={handleAskClick}>Ask Question</button>
                 </div>
             </div>
             <div className='single-question-body'>{question.body}</div>
