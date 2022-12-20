@@ -30,28 +30,47 @@ const NavBar = () => {
                     </>
                 }
             </div>
+
+            <div className='navbar-search'>
+                <SearchBar/>
+            </div>
+
+            <div className='navbar-right'>
+                {user ?
+                    <>
+                        <div className='navbar-profileButtion'>
+
+                        </div>
+                        <div className='navbar-logout'>
+                        <LogoutButton />
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div className='navbar-login'>
+                        <NavLink to='/login' exact={true} activeClassName='active'>
+                            Login
+                        </NavLink>
+                        </div>
+                        <div className='navbar-signup'>
+                        <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                            Sign Up
+                        </NavLink>
+                        </div>
+                    </>
+                }
+
+
+            </div>
         </div>
-        <div>
-            <SearchBar/>
-        </div>
-        <div>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </div>
+
+
+
         {/* <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
         </li> */}
-        <div>
-          <LogoutButton />
-        </div>
     </nav>
   );
 }

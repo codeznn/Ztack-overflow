@@ -73,7 +73,4 @@ class Question(db.Model):
             'answersNum': len(self.answers),
             'createdAt': self.created_at,
             'updateAt': self.updated_at,
-            'Answers': [
-                answer.to_dict() for answer in self.answers
-            ]
         }

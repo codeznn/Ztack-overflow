@@ -10,7 +10,7 @@ const TopQuestions = () => {
     const questionObj = useSelector(state => state.questions.topQuestions)
     const questionArr = Object.values(questionObj).reverse()
     const totalNum = questionArr.length
-    console.log("=====in AllQuestions components:", questionArr)
+    //console.log("=====in TopQuestions components:", questionArr)
 
     useEffect(() => {
         dispatch(getTopQuestions())

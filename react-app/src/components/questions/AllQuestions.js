@@ -10,7 +10,7 @@ const AllQuestions = () => {
     const questionObj = useSelector(state => state.questions.allQuestions)
     const questionArr = Object.values(questionObj)
     const totalNum = questionArr.length
-    console.log("=====in AllQuestions components:", questionArr)
+    //console.log("=====in AllQuestions components:", questionArr)
 
     useEffect(() => {
         dispatch(getAllQuestions())
@@ -69,7 +69,7 @@ const AllQuestions = () => {
                             {/* <div className='questions-single-question-tag'>{question.category}</div> */}
                         </div>
                         <div className='questions-single-question-user'>
-                            <img src={question.profileImg} className="questions-userImg"></img>
+                            {question.profileImg && <img src={question.profileImg} className="questions-userImg"></img>}
                             <span>{question.userName} asked </span>
                             <span>{getAskedTime(question.createdAt)}</span>
                         </div>

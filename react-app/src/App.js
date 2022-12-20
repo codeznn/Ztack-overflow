@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import AllQuestions from './components/questions/AllQuestions';
 import TopQuestions from './components/questions/TopQuestions';
 import HomePage from './components/HomePage';
+import SingleQuestion from './components/SingleQuestion';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,13 +35,19 @@ function App() {
         <Route path='/questions' exact={true}>
           <AllQuestions />
         </Route>
-        <Route path='/home' exact={true}>
-          <TopQuestions />
+        <Route path='/questions/:questionId' exact={true}>
+          <SingleQuestion />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
+        <Route path='/home' exact={true}>
+          <TopQuestions />
+        </Route>
         <Route path='/sign-up' exact={true}>
+          <SignUpForm />
+        </Route>
+        <Route path='/new-questions' exact={true}>
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
@@ -49,7 +56,7 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <Route path='/' exact={true}>
           <HomePage />
         </Route>
 

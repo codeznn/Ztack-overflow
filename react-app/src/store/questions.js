@@ -26,6 +26,11 @@ const searchQuestions = (questions) => ({
     questions
 })
 
+const oneQuestion = (question) => ({
+    type: LOAD_ONE_QUESTION,
+    question
+})
+
 export const getAllQuestions = () => async (dispatch) =>  {
     const response = await fetch('/api/questions/all')
 
@@ -37,7 +42,6 @@ export const getAllQuestions = () => async (dispatch) =>  {
 }
 
 export const getTopQuestions = () => async (dispatch) =>  {
-    console.log("======in Reducer")
     const response = await fetch('/api/questions/top')
 
     if (response.ok) {
@@ -48,14 +52,24 @@ export const getTopQuestions = () => async (dispatch) =>  {
 }
 
 export const getSearchQuestions = (keyword) => async (dispatch) => {
-    console.log("======in Reducer")
     const response = await fetch(`/api/questions/search/${keyword}`)
 
     if (response.ok) {
         const questions = await response.json();
-        console.log("======in Reducer-questions", questions)
         dispatch(searchQuestions(questions))
         return questions
+    }
+}
+
+export const getOneQuestion = (id) => async (dispatch) => {
+    console.log("======in Reducer")
+    const response = await fetch(`/api/questions/${id}`)
+
+    if (response.ok) {
+        const question = await response.json();
+        console.log("======in Reducer-questions", question)
+        dispatch(oneQuestion(question))
+        return question
     }
 }
 
@@ -88,6 +102,10 @@ const questions = (state = initialState, action) => {
             action.questions.Questions.forEach(question => {
                 newState.searchQuestions[question.id] = question
             })
+            return newState;
+
+        case LOAD_ONE_QUESTION:
+            newState = { ...state, singleQuestion: { ...action.question}}
             return newState;
 
         default:
