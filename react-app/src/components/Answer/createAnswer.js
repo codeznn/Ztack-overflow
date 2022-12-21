@@ -14,19 +14,19 @@ const CreateAnswer = ({ questionId }) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         setErrors([])
-        setHasSubmitted(true)
+        // setHasSubmitted(true)
 
-        const errors = []
+        // const errors = []
 
-        if (content.length < 30) errors.push('Content requires 30 characters minimum!')
-        if (content.length > 200000) errors.push('Content exceeds 200000 characters limit!')
-        setErrors(errors)
+        // if (content.length < 30) errors.push('Content requires 30 characters minimum!')
+        // if (content.length > 200000) errors.push('Content exceeds 200000 characters limit!')
+        // setErrors(errors)
 
-        console.log("=== in createAnswer component-errors1:", errors)
+        // console.log("=== in createAnswer component-errors1:", errors)
 
-        if (errors.length > 0) {
-            return
-        }
+        // if (errors.length > 0) {
+        //     return
+        // }
 
         const answer = { content }
         const response = await dispatch(addOneAnswer(answer, questionId))
@@ -34,22 +34,27 @@ const CreateAnswer = ({ questionId }) => {
         const backendError = []
         if (response.errors) {
             backendError.push(response.errors)
+            //console.log("=== in createAnswer component-error:", error)
             setErrors(backendError)
+            //console.log("=== in createAnswer component-errors2:", errors)
+        } else {
+            history.push(`/questions/${questionId}`)
         }
 
-        console.log("=== in createAnswer component-errors2:", errors)
-        if (errors.length > 0) {
-            return
-        }
+        // if (errors.length > 0) {
+        //     return
+        // }
 
-        setContent('')
-        setErrors([])
-        setHasSubmitted(false)
+        // setContent('')
+        // setErrors([])
+        // setHasSubmitted(false)
     }
 
     const handleCancelClick = () => {
-        return history.push(`/questions/${questionId}`);
+        setContent('')
+        setErrors([])
     };
+
 
     return (
         <>
@@ -60,9 +65,9 @@ const CreateAnswer = ({ questionId }) => {
         <div className="create-answer-body">
 
             <div>
-                {hasSubmitted && errors?.map((error, i) => {
+                {errors && errors?.map((error, i) => {
                     return (
-                        <div key={i} className='create-question-errors'>•{error}</div>
+                        <div key={i} className='create-question-errors'>•{error[0].split(":")[1]}</div>
                     )
                 })}
             </div>
@@ -76,7 +81,7 @@ const CreateAnswer = ({ questionId }) => {
 
         <div className="create-answer-button">
             <button type="submit">Post your answer</button>
-            <button type="button" onClick={handleCancelClick}>Cancel</button>
+            <button type="button" onClick={handleCancelClick}>Draft</button>
         </div>
         </form>
 

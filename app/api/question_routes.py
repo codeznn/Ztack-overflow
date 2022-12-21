@@ -153,7 +153,7 @@ def create_answer(question_id):
     if existed_answers:
         for answer in existed_answers:
             if answer.owner_id == current_user.id:
-                return {"errors": "You have already left an answer for this question"}, 400
+                return {"errors": ["error: You have already left an answer for this question!"]}, 400
 
     if form.validate_on_submit():
         data = Answer(

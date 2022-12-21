@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, useHistory } from "react-router-dom";
 import { getAllAnswers, removeOneAnswer, resetAnswers } from '../../store/answers';
+import DeleteAnswer from './deleteAnswer';
 
 const AllAnswers = ( { questionId, user } ) => {
     const dispatch = useDispatch();
@@ -34,27 +35,20 @@ const AllAnswers = ( { questionId, user } ) => {
         }
     }
 
-    const deleteAnswerClick = async(id) => {
-        // if (window.confirm("Are you sure you want to delete this answer?")){
-            const response = await dispatch(removeOneAnswer(id))
-            if (response) {
-                history.push(`/questions/${questionId}`)
-            }
 
-    }
 
     return (
         <>
         <div>
-            {answersArr?.map((answer) => (
-                <div key={answer.id} className='single-answer'>
+            {answersArr?.map((answer, i) => (
+                <div key={i} className='single-answer'>
                     <div className='single-answer-content'>{answer.content}</div>
                     <div className='single-question-modify'>
                         {user && user.id == answer.ownerId
                         ?
                         <div>
                         <Link to={`/answers/${answer.id}/edit`} style={{ textDecoration: 'none'}} >Edit </Link>
-                        <button type='button' onClick={() => deleteAnswerClick(answer.id)}>Delete</button>
+                        <DeleteAnswer answerId={answer.id} questionId={questionId}/>
                         </div>
                         :
                         null
