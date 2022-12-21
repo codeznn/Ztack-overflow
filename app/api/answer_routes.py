@@ -33,12 +33,13 @@ def update_answer(answer_id):
         return {"errors": "You are not the owner of this answer."}, 403
 
     if form.validate_on_submit():
-        edit_answer.title = form.data["content"],
-        edit_answer.created_at = datetime.now(),
+        # print(form.data["content"])
+        edit_answer.content = form.data["content"]
+        edit_answer.created_at = datetime.now()
         edit_answer.updated_at = datetime.now()
 
         db.session.commit()
-        return edit_answer.to_dict(), 200
+        return edit_answer.to_dict_with_user(), 200
     else:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 

@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateOneAnswer } from "../../store/answers";
+import { addOneAnswer } from "../../store/answers";
 
-
-const EditAnswer = () => {
+const CreateAnswer = ({ questionId }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { answerId } = useParams();
-    const answer = useSelector((state) => state.answers.answers[answerId]);
-    const questionId = answer?.questionId
-    const [content, setContent] = useState(answer?.content);
-    const [errors, setErrors] = useState([]);
-    const [hasSubmitted, setHasSubmitted] = useState(false);
-    console.log("=== in editAnswer component-answer:", answer)
+    const [content, setContent] = useState('');
+    const [errors, setErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+    //console.log("=== in createAnswer component-questionId:", questionId)
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -26,20 +22,24 @@ const EditAnswer = () => {
         if (content.length > 200000) errors.push('Content exceeds 200000 characters limit!')
         setErrors(errors)
 
-        console.log("=== in editAnswer component-error:", errors)
+        console.log("=== in createAnswer component-errors1:", errors)
 
         if (errors.length > 0) {
             return
         }
 
         const answer = { content }
-        console.log("=== in editAnswer component-answer:", answerId)
+        const response = await dispatch(addOneAnswer(answer, questionId))
+        console.log("=== in createAnswer component-response:", response)
+        const backendError = []
+        if (response.errors) {
+            backendError.push(response.errors)
+            setErrors(backendError)
+        }
 
-        const response = await dispatch(updateOneAnswer(answer, answerId))
-
-        //console.log("=== in editQustion component-response:", response)
-        if (response){
-            history.push(`/questions/${questionId}`)
+        console.log("=== in createAnswer component-errors2:", errors)
+        if (errors.length > 0) {
+            return
         }
 
         setContent('')
@@ -48,22 +48,22 @@ const EditAnswer = () => {
     }
 
     const handleCancelClick = () => {
-        history.push(`/questions/${questionId}`)
-    }
+        return history.push(`/questions/${questionId}`);
+    };
 
     return (
+        <>
+        <div className="create-answer-title">Your Answer</div>
         <div className="create-answer-wrapper">
-        <h1>Edit your answer</h1>
         <form className="create-answer-form" onSubmit={handleSubmit}>
 
         <div className="create-answer-body">
 
             <div>
                 {hasSubmitted && errors?.map((error, i) => {
-                    if (error.split(" ")[0] === 'Content')
-                        return (
-                            <div key={i} className='create-question-errors'>•{error}</div>
-                        )
+                    return (
+                        <div key={i} className='create-question-errors'>•{error}</div>
+                    )
                 })}
             </div>
             <input className="create-answer-input"
@@ -75,13 +75,15 @@ const EditAnswer = () => {
         </div>
 
         <div className="create-answer-button">
-            <button type="submit">Save edits</button>
-            <button type="button" onClick={handleCancelClick}>cancel</button>
+            <button type="submit">Post your answer</button>
+            <button type="button" onClick={handleCancelClick}>Cancel</button>
         </div>
         </form>
 
     </div>
+        </>
     )
+
 }
 
-export default EditAnswer;
+export default CreateAnswer;

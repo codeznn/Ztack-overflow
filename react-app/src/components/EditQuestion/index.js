@@ -32,18 +32,18 @@ const EditQuestion = () => {
         if (body.length > 200000) errors.push('Body exceeds 200000 characters limit!')
         setErrors(errors)
 
-        console.log("=== in editQustion component-error:", errors)
+        //console.log("=== in editQustion component-error:", errors)
 
         if (errors.length > 0) {
             return
         }
 
         const question = { title, body }
-        console.log("=== in editQustion component-question:", question)
+        //console.log("=== in editQustion component-question:", question)
 
         const response = await dispatch(updateOneQuestion(question, questionId))
 
-        console.log("=== in editQustion component-response:", response)
+        //console.log("=== in editQustion component-response:", response)
         if (response){
             history.push(`/questions/${questionId}`)
         }

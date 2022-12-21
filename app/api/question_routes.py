@@ -158,13 +158,13 @@ def create_answer(question_id):
     if form.validate_on_submit():
         data = Answer(
             owner_id = current_user.id,
-            qeustion_id = question_id,
+            question_id = question_id,
             content = form.data["content"],
             created_at = datetime.now(),
-            updated_at = datetime.now()
+            updated_at = datetime.now(),
         )
         db.session.add(data)
         db.session.commit()
-        return data.to_dict(), 201
+        return data.to_dict_with_user(), 201
     else:
         return {"errors": validation_errors_to_error_messages(form.errors)}, 400

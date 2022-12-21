@@ -14,6 +14,7 @@ import HomePage from './components/HomePage';
 import SingleQuestion from './components/SingleQuestion';
 import CreateQuestion from './components/CreateQuestion';
 import EditQuestion from './components/EditQuestion';
+import EditAnswer from './components/Answer/editAnswer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,7 +60,7 @@ function App() {
           <CreateQuestion />
         </Route>
         <Route path='/answers/:answerId/edit' exact={true}>
-          <EditQuestion />
+          <EditAnswer />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

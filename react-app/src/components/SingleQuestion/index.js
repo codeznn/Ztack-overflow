@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, Link } from "react-router-dom";
+import { getAllAnswers } from '../../store/answers';
 import questions, { getOneQuestion, removeOneQuestion } from '../../store/questions';
+import CreateAnswer from '../Answer/createAnswer';
 import AllAnswers from '../Answer/getAnswers';
 
 import './SingleQuestion.css'
@@ -17,6 +19,7 @@ const SingleQuestion = () => {
 
     useEffect(() => {
         dispatch(getOneQuestion(questionId))
+        dispatch(getAllAnswers(questionId))
     }, [dispatch, questionId])
 
     if (!question) return null;
@@ -51,7 +54,7 @@ const SingleQuestion = () => {
     }
 
     const handleAskClick = () => {
-        return history.push('/questions/new')
+        return history.push('/new-questions')
     }
 
     const deleteQuestionClick = async() => {
@@ -62,6 +65,7 @@ const SingleQuestion = () => {
             }
         }
     }
+
 
     return (
         <div className='single-question-wrapper'>
@@ -94,9 +98,22 @@ const SingleQuestion = () => {
             <div className='single-question-answer-wrapper'>
                 <div className='single-question-answerNum'>{getAnswerNum(question.answersNum)} </div>
                 <div className='single-question-answer-container'>
-                    <AllAnswers questionId={questionId} user={sessionUser} getAskedTime={getAskedTime}/>
+                    <AllAnswers questionId={questionId} user={sessionUser} />
                 </div>
             </div>
+
+            <div className='single-question-create-answer-wrapper'>
+                <div className='single-question-create-answer-container'>
+                    {sessionUser
+                    ?
+                    <CreateAnswer questionId={questionId}/>
+                    :
+                    null
+                    }
+                </div>
+            </div>
+
+
 
 
         </div>
