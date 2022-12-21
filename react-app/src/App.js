@@ -55,6 +55,12 @@ function App() {
         <Route path='/questions/:questionId/edit' exact={true}>
           <EditQuestion />
         </Route>
+        <Route path='/new-answer' exact={true}>
+          <CreateQuestion />
+        </Route>
+        <Route path='/answers/:answerId/edit' exact={true}>
+          <EditQuestion />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

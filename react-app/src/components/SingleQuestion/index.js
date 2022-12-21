@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, Link } from "react-router-dom";
 import questions, { getOneQuestion, removeOneQuestion } from '../../store/questions';
+import AllAnswers from '../Answer/getAnswers';
 
 import './SingleQuestion.css'
 
@@ -90,9 +91,13 @@ const SingleQuestion = () => {
                 }
             </div>
 
-            <div className='single-question-answer'>
+            <div className='single-question-answer-wrapper'>
                 <div className='single-question-answerNum'>{getAnswerNum(question.answersNum)} </div>
+                <div className='single-question-answer-container'>
+                    <AllAnswers questionId={questionId} user={sessionUser} getAskedTime={getAskedTime}/>
+                </div>
             </div>
+
 
         </div>
     )

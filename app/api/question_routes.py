@@ -129,16 +129,14 @@ def delete_question(question_id):
 @question_routes.route("/<int:question_id>/answers")
 def get_question_answers(question_id):
     question = Question.query.get(question_id)
-
     if not question:
         return {"errors": "Question couldn't be found."}, 404
 
     answers = Answer.query.filter(Answer.question_id == question_id).all()
 
-    if not answers:
-        return {"Answers": [
-            answer.to_dict() for answer in answers
-        ]}, 200
+    return {"Answers": [answer.to_dict_with_user() for answer in answers]}, 200
+
+
 
 # create an answer of one question
 @question_routes.route("/<int:question_id>/answers", methods=["POST"])

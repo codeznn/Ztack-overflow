@@ -6,7 +6,6 @@ const CREATE_QUESTION = 'questions/createquestion';
 const UPDATE_QUESTION = 'questions/updatequestion';
 const REMOVE_QUESTION = 'questions/deletequestion';
 const MY_QUESTIONS = 'questions/myquestion';
-const SEARCH_QUESTIONS = 'questions/searchedquestions';
 
 
 const allQuestions = (questions) => ({
