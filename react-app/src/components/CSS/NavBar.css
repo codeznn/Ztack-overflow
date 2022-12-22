@@ -29,10 +29,19 @@ nav {
 }
 
 .logo {
-    /* left: 62px; */
     height: 40px;
     width: auto;
     margin-top: 5px;
+
+}
+
+.navbar-search {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 5px;
+    margin-right: 5px;
+    width: 60%;
 
 }
 
