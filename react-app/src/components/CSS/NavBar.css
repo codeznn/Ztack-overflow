@@ -17,6 +17,7 @@ nav {
     flex-direction: row;
     margin: 20px auto;
     justify-content: center;
+    align-items: center;
     position: relative;
     box-sizing: border-box;
 }
@@ -31,7 +32,8 @@ nav {
     /* left: 62px; */
     height: 40px;
     width: auto;
-    margin-top: 0;
+    margin-top: 5px;
+
 }
 
 .navbar-no-profileimg {

@@ -51,7 +51,7 @@ def get_my_questions():
 @question_routes.route("/<int:question_id>")
 def get_one_question(question_id):
     question = Question.query.get(question_id)
-    answers = Answer.query.filter(Answer.question_id == question_id).all()
+    # answers = Answer.query.filter(Answer.question_id == question_id).all()
 
     if question:
         return question.to_dict_single_question()

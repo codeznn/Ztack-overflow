@@ -10,7 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import AllQuestions from './components/Questions/AllQuestions';
 import TopQuestions from './components/Questions/TopQuestions';
-import HomePage from './components/HomePage';
+import HomePage from './components/SplashPage';
 import SingleQuestion from './components/Questions/SingleQuestion';
 import CreateQuestion from './components/Questions/CreateQuestion';
 import EditQuestion from './components/Questions/EditQuestion';

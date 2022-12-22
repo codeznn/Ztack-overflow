@@ -1,15 +1,25 @@
 import React from 'react';
 import { useSelector} from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import SearchBar from './SearchBar';
 import logo from '../images/Logo.png';
 import "../CSS/NavBar.css"
 
 const NavBar = () => {
+    const history = useHistory();
     const user = useSelector(state => state.session.user)
-    console.log(user)
+    //console.log(user)
     const CapLetter = user?.username[0].toUpperCase()
+
+    const handleLoginClick = () => {
+        return history.push('/login')
+    }
+
+    const handleSignupClick = () => {
+        return history.push('/sign-up')
+    }
+
   return (
     <nav>
         <div className='navBar-main'>
@@ -55,14 +65,10 @@ const NavBar = () => {
                     :
                     <>
                         <div className='navbar-login'>
-                        <NavLink to='/login' exact={true} activeClassName='active'>
-                            Login
-                        </NavLink>
+                            <button type='button' onClick={handleLoginClick}>Log in</button>
                         </div>
                         <div className='navbar-signup'>
-                        <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                            Sign Up
-                        </NavLink>
+                            <button type='button' onClick={handleSignupClick}>Sign up</button>
                         </div>
                     </>
                 }

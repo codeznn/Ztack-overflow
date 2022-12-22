@@ -42,14 +42,31 @@ const SingleQuestion = () => {
         let sec = parseInt((endDate - beginDate) / 1000)
 
         if (sec < 60) {
-            return sec + " sec ago"
+            if (sec === 1) {
+                return sec + " sec ago"
+            } else {
+                return sec + " secs ago"
+            }
         } else if ( min < 59) {
-            return min + " min ago"
+            if (min === 1) {
+                return min + " min ago"
+            } else {
+                return min + " mins ago"
+            }
         } else if ( hour < 24) {
-            return hour + " hour ago"
+            if (hour === 1) {
+                return hour + " hour ago"
+            } else {
+                return hour + " hours ago"
+            }
         } else {
-            return day + " day ago"
+            if (day === 1) {
+                return day + " day ago"
+            } else {
+                return day + " days ago"
+            }
         }
+
 
     }
 

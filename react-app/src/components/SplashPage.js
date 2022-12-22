@@ -1,6 +1,6 @@
 import React from 'react';
 import homepagePic from './images/homepage.png';
-import './CSS/HomePage.css'
+import './CSS/SplashPage.css'
 
 const HomePage = () => {
     return (
