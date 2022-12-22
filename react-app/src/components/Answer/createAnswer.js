@@ -17,7 +17,7 @@ const CreateAnswer = ({ questionId }) => {
         //setHasSubmitted(true)
 
         const answer = { content }
-        const response = await dispatch(addOneAnswer(answer, questionId))
+        const response = await dispatch(addOneAnswer(answer, questionId)).then(setContent(''))
         console.log("=== in createAnswer component-response:", response)
         const backendError = []
         if (response) {
@@ -30,14 +30,6 @@ const CreateAnswer = ({ questionId }) => {
             //console.log("=== in createAnswer component-errors2:", errors)
         }
 
-        // if (response) {
-        //     console.log("==================")
-        //     setContent('')
-        // }
-
-        //setContent('')
-        // setErrors([])
-        //setHasSubmitted(false)
     }
 
     const handleCancelClick = () => {
