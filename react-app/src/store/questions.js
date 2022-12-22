@@ -165,8 +165,8 @@ const questions = (state = initialState, action) => {
             })
             return newState;
 
-        case LOAD_TOP_QUESTIONS:
-            newState = { ...state, searchQuestions: { ...state.searchQuestions}}
+        case LOAD_SEARCH_QUESTIONS:
+            newState = { ...state, searchQuestions: {}}
             action.questions.Questions.forEach(question => {
                 newState.searchQuestions[question.id] = question
             })
