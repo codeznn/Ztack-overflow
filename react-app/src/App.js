@@ -16,6 +16,7 @@ import CreateQuestion from './components/Questions/CreateQuestion';
 import EditQuestion from './components/Questions/EditQuestion';
 import EditAnswer from './components/Answer/editAnswer';
 import SearchQuestions from './components/Questions/SearchQuestion';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -75,7 +76,9 @@ function App() {
         <Route path='/' exact={true}>
           <HomePage />
         </Route>
-
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

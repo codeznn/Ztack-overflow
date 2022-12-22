@@ -1,0 +1,23 @@
+.notfound-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .logo-back {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .logo-back:hover {
+    cursor: pointer;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+    text-decoration: underline;
+  }
