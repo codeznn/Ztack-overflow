@@ -1,0 +1,47 @@
+nav {
+    width: auto;
+    margin: 0 auto;
+    background-color: rgb(227, 226, 226);
+}
+
+.navBar-main {
+    box-sizing: border-box;
+    min-height: 60px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 90rem;
+}
+
+.navBar-outer {
+    display: flex;
+    flex-direction: row;
+    margin: 20px auto;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.navBar-link {
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    /* left: 62px; */
+    height: 40px;
+    width: auto;
+    margin-top: 0;
+}
+
+.navbar-no-profileimg {
+    height: 30px;
+    width: auto;
+    margin-top: 0;
+}
+
+.navbar-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

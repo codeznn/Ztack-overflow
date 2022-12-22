@@ -6,7 +6,7 @@ import questions, { getOneQuestion, removeOneQuestion } from '../../store/questi
 import CreateAnswer from '../Answer/createAnswer';
 import AllAnswers from '../Answer/getAnswers';
 
-import './SingleQuestion.css'
+// import './SingleQuestion.css'
 
 const SingleQuestion = () => {
     const { questionId } = useParams();

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import SearchBar from './SearchBar';
 import logo from '../images/Logo.png';
-import "./NavBar.css"
+import "../CSS/NavBar.css"
 
 const NavBar = () => {
     const user = useSelector(state => state.session.user)
@@ -13,6 +13,7 @@ const NavBar = () => {
   return (
     <nav>
         <div className='navBar-main'>
+        <div className='navBar-outer'>
             <div className='navBar-link'>
                 {user ?
                     <>
@@ -77,6 +78,7 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
+        </div>
     </nav>
   );
 }

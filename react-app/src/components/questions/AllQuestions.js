@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import { getAllQuestions } from '../../store/questions';
 
-import "./questions.css";
+// import "./questions.css";
 
 const AllQuestions = () => {
     const dispatch = useDispatch();

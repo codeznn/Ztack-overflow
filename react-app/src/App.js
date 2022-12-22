@@ -8,14 +8,14 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import AllQuestions from './components/questions/AllQuestions';
-import TopQuestions from './components/questions/TopQuestions';
+import AllQuestions from './components/Questions/AllQuestions';
+import TopQuestions from './components/Questions/TopQuestions';
 import HomePage from './components/HomePage';
-import SingleQuestion from './components/SingleQuestion';
-import CreateQuestion from './components/CreateQuestion';
-import EditQuestion from './components/EditQuestion';
+import SingleQuestion from './components/Questions/SingleQuestion';
+import CreateQuestion from './components/Questions/CreateQuestion';
+import EditQuestion from './components/Questions/EditQuestion';
 import EditAnswer from './components/Answer/editAnswer';
-import SearchQuestions from './components/questions/searchQuestion';
+import SearchQuestions from './components/Questions/SearchQuestion';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
