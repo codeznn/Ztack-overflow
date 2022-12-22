@@ -8,6 +8,8 @@ import "./NavBar.css"
 
 const NavBar = () => {
     const user = useSelector(state => state.session.user)
+    console.log(user)
+    const CapLetter = user?.username[0].toUpperCase()
   return (
     <nav>
         <div className='navBar-main'>
@@ -22,7 +24,7 @@ const NavBar = () => {
                     </>
                     :
                     <>
-                    <NavLink to='/' exact={true} activeClassName='active'>
+                    <NavLink to='/questions' exact={true} activeClassName='active'>
                         <div className='navbar-logo'>
                             <img src={logo} alt="logo" className='logo'></img>
                         </div>
@@ -39,10 +41,14 @@ const NavBar = () => {
                 {user ?
                     <>
                         <div className='navbar-profileButtion'>
-
+                            {user.profileImage ?
+                                <img className='navbar-no-profileimg'src={user.profileImage} alt='img'></img>
+                            :
+                                <div className='navbar-no-profileimg'>{CapLetter}</div>
+                            }
                         </div>
                         <div className='navbar-logout'>
-                        <LogoutButton />
+                            <LogoutButton />
                         </div>
                     </>
                     :

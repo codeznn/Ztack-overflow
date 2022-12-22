@@ -12,6 +12,7 @@ const AllQuestions = () => {
     const questionObj = useSelector(state => state.questions.allQuestions)
     const questionArr = Object.values(questionObj)
     const totalNum = questionArr.length
+
     //console.log("=====in AllQuestions components:", questionArr)
 
     useEffect(() => {
@@ -76,7 +77,14 @@ const AllQuestions = () => {
                             {/* <div className='questions-single-question-tag'>{question.category}</div> */}
                         </div>
                         <div className='questions-single-question-user'>
-                            {question.profileImg && <img src={question.profileImg} className="questions-userImg"></img>}
+                            {question.profileImg ?
+                                <div>
+                                    <img src={question.profileImg} className="questions-userImg"></img>
+                                </div>
+                                :
+                                <div className="questions-no-userImg">{question.userName[0].toUpperCase()}</div>
+
+                            }
                             <span>{question.userName} asked </span>
                             <span>{getAskedTime(question.createdAt)}</span>
                         </div>

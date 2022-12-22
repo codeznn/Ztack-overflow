@@ -80,6 +80,9 @@ const SingleQuestion = () => {
                 <div className='singel-question-time'>asked {getAskedTime(question.createdAt)}</div>
                 <div className='singel-question-profile'>
                     {question.profileImg && <img src={question.profileImg} className="questions-userImg"></img>}
+                    {!question.profileImg && question.userName &&
+                        <div className="questions-no-userImg">{question.userName[0].toUpperCase()}</div>
+                    }
                 </div>
                 <div className='singel-question-username'>{question.userName}</div>
             </div>

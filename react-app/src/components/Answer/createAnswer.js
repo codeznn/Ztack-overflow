@@ -14,40 +14,30 @@ const CreateAnswer = ({ questionId }) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         setErrors([])
-        // setHasSubmitted(true)
-
-        // const errors = []
-
-        // if (content.length < 30) errors.push('Content requires 30 characters minimum!')
-        // if (content.length > 200000) errors.push('Content exceeds 200000 characters limit!')
-        // setErrors(errors)
-
-        // console.log("=== in createAnswer component-errors1:", errors)
-
-        // if (errors.length > 0) {
-        //     return
-        // }
+        //setHasSubmitted(true)
 
         const answer = { content }
         const response = await dispatch(addOneAnswer(answer, questionId))
         console.log("=== in createAnswer component-response:", response)
         const backendError = []
+        if (response) {
+            console.log("============")
+        }
         if (response.errors) {
             backendError.push(response.errors)
             //console.log("=== in createAnswer component-error:", error)
             setErrors(backendError)
             //console.log("=== in createAnswer component-errors2:", errors)
-        } else {
-            history.push(`/questions/${questionId}`)
         }
 
-        // if (errors.length > 0) {
-        //     return
+        // if (response) {
+        //     console.log("==================")
+        //     setContent('')
         // }
 
-        // setContent('')
+        //setContent('')
         // setErrors([])
-        // setHasSubmitted(false)
+        //setHasSubmitted(false)
     }
 
     const handleCancelClick = () => {

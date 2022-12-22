@@ -56,6 +56,7 @@ const AllAnswers = ( { questionId, user } ) => {
                     </div>
             <div className='single-answer-user'>
                 {answer.User.profileImage && <img src={answer.User.profileImage} className="questions-userImg"></img>}
+                {!answer.User.profileImage && <div className="questions-no-userImg">{answer.User.userName[0].toUpperCase()}</div>}
                 <span>{answer.User.userName} answered </span>
                 <span>{getAnsweredTime(answer.createdAt)}</span>
                 </div>
