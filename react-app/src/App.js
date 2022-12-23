@@ -15,7 +15,7 @@ import SingleQuestion from './components/AllQuestions/SingleQuestion';
 import CreateQuestion from './components/AllQuestions/CreateQuestion';
 import EditQuestion from './components/AllQuestions/EditQuestion';
 import EditAnswer from './components/Answer/editAnswer';
-import SearchQuestions from './components/AllQuestions/SearchQuestion';
+import SearchQuestions from './components/AllQuestions/SearchQuestions';
 import PageNotFound from './components/PageNotFound';
 
 function App() {
