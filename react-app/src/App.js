@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-//import AllQuestions from './components/Questions/AllQuestions';
+import AllQuestions from './components/Questions/AllQuestions';
 import TopQuestions from './components/Questions/TopQuestions';
 import HomePage from './components/SplashPage';
 import SingleQuestion from './components/Questions/SingleQuestion';
@@ -37,9 +37,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        {/* <Route path='/questions' exact={true}>
+        <Route path='/questions' exact={true}>
           <AllQuestions />
-        </Route> */}
+        </Route>
         <Route path='/questions/:questionId' exact={true}>
           <SingleQuestion />
         </Route>
