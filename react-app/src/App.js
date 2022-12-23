@@ -8,14 +8,14 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import AllQuestions from './components/Questions/AllQuestions';
-import TopQuestions from './components/Questions/TopQuestions';
+import AllQuestions from './components/AllQuestions/AllQuestions';
+import TopQuestions from './components/AllQuestions/TopQuestions';
 import HomePage from './components/SplashPage';
-import SingleQuestion from './components/Questions/SingleQuestion';
-import CreateQuestion from './components/Questions/CreateQuestion';
-import EditQuestion from './components/Questions/EditQuestion';
+import SingleQuestion from './components/AllQuestions/SingleQuestion';
+import CreateQuestion from './components/AllQuestions/CreateQuestion';
+import EditQuestion from './components/AllQuestions/EditQuestion';
 import EditAnswer from './components/Answer/editAnswer';
-import SearchQuestions from './components/Questions/SearchQuestion';
+import SearchQuestions from './components/AllQuestions/SearchQuestion';
 import PageNotFound from './components/PageNotFound';
 
 function App() {
