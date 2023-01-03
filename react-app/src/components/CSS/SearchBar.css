@@ -1,1 +1,43 @@
+.searchBar-main{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-right: 5px;
+    width: 100%;
 
+}
+
+.searchBar-container {
+    border: rgb(127, 126, 126) 0.5px solid;
+    background-color: #F3F3F3;
+    width: 98%;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    margin: 4px 10px 0 5px;
+}
+
+#form01 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.fa-sharp.fa-solid.fa-magnifying-glass {
+    font-size: 1.3rem;
+    color: rgb(164, 160, 160);
+    margin-left: 20px;
+  }
+
+.searchBar-input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 16px;
+  font-family: GraphikLight, Arial, Helvetica, sans-serif;
+  padding: 1.5px 20px;
+  width: 100%;
+  cursor: default;
+}
