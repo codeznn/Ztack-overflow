@@ -53,7 +53,7 @@ const NavBar = () => {
                     <>
                         <div className='navbar-profileButtion'>
                             {user.profileImage ?
-                                <img className='navbar-no-profileimg'src={user.profileImage} alt='img'></img>
+                                <img className='navbar-profileimg'src={user.profileImage} alt='img'></img>
                             :
                                 <div className='navbar-no-profileimg'>{CapLetter}</div>
                             }
@@ -65,10 +65,10 @@ const NavBar = () => {
                     :
                     <>
                         <div className='navbar-login'>
-                            <button type='button' onClick={handleLoginClick}>Log in</button>
+                            <button type='button' onClick={handleLoginClick} className="login-button">Log in</button>
                         </div>
                         <div className='navbar-signup'>
-                            <button type='button' onClick={handleSignupClick}>Sign up</button>
+                            <button type='button' onClick={handleSignupClick} className="signup-button">Sign up</button>
                         </div>
                     </>
                 }

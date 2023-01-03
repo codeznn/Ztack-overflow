@@ -82,5 +82,10 @@ def seed_answers():
 
 
 def undo_answers():
-    db.session.execute('TRUNCATE answers RESTART IDENTITY CASCADE;')
+    if environment == "production":
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.answers RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM answers")
+
     db.session.commit()

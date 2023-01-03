@@ -1,7 +1,7 @@
 nav {
     width: auto;
     margin: 0 auto;
-    background-color: rgb(227, 226, 226);
+    background-color: rgb(249, 246, 246);
 }
 
 .navBar-main {
@@ -45,14 +45,64 @@ nav {
 
 }
 
-.navbar-no-profileimg {
-    height: 30px;
-    width: auto;
-    margin-top: 0;
-}
-
 .navbar-right {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.navbar-profileimg {
+    width: auto;
+    height: 32px;
+    margin-top: 12px;
+}
+
+.navbar-no-profileimg {
+    width: auto;
+    height: 32px;
+    margin-top: 12px;
+    background-color: green;
+    color: white;
+    font-size: 16px;
+}
+
+.logout-button {
+    font-size: 14px;
+    border: none;
+    background-color: rgba(141, 176, 226, 0.925);
+    color: rgb(23, 70, 223);
+    font-family: GraphikMedium, Arial, Helvetica, sans-serif;
+    height: 32px;
+    width: 65px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+.login-button {
+    font-size: 14px;
+    border: solid 0.5px;
+    background-color: rgba(159, 192, 239, 0.925);
+    color: rgb(58, 96, 222);
+    font-family: GraphikMedium, Arial, Helvetica, sans-serif;
+    height: 36px;
+    width: 65px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.signup-button {
+    font-size: 14px;
+    border: solid 0.5px rgb(58, 96, 222);
+    background-color: rgb(42, 164, 239);
+    color: white;
+    font-family: GraphikMedium, Arial, Helvetica, sans-serif;
+    height: 36px;
+    width: 65px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 8px;
 }

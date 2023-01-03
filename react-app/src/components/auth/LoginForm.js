@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import '../CSS/Login.css'
+import logoPic from '../images/favicon.png'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -39,45 +41,54 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
     <>
+    <div className='login-wrapper'>
 
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+      <div className="login-container">
+        <div>
+          <img src={logoPic} alt='logoPic' className='logo-pic'></img>
+        </div>
+        <form onSubmit={onLogin} className='login-form'>
+          <div className='login-error'>
+            {errors.map((error, i) => (
+              <div key={i} >{error.split(":")[1]}</div>
+            ))}
+          </div>
+          <div>
+            <label htmlFor='email' className='login-label'>Email</label>
+            <br></br>
+            <input
+              name='email'
+              type='text'
+              value={email}
+              onChange={updateEmail}
+              required
+              className='login-input'
+            />
+          </div>
+          <div>
+            <label htmlFor='password' className='login-label'>Password</label>
+            <br></br>
+            <input
+              name='password'
+              type='password'
+              value={password}
+              onChange={updatePassword}
+              required
+              className='login-input'
+            />
+          </div>
+          <button type='submit' className='login-login-button'>Login</button>
+          <button onClick={DemoUser} className='login-demo-button'>Demo User</button>
+        </form>
+        <div className='login-sentence'>Don’t have an account?
+          <Link style={{ textDecoration: "none", color: "blue" }} to={`/sign-up`}> Sign up</Link>
+        </div>
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-          required
-        />
-        <button type='submit'>Login</button>
-        <button onClick={DemoUser}>DemoUser</button>
-      </div>
-    </form>
-    <div>Don’t have an account?
-      <Link style={{ textDecoration: "none", color: "blue" }} to={`/sign-up`}>Sign up</Link>
     </div>
     </>
   );
