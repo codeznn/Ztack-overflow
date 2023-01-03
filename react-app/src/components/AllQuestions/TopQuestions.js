@@ -84,6 +84,7 @@ const TopQuestions = () => {
             <div className='questions-single-container'>
                 {questionArr.map((question) => (
                     <div key={question.id} className="questions-single-question" style={{ textDecoration: 'none'}}>
+                        <div className='questions-single-question-top'>
                         <div className='questions-single-question-left'>
                             <div>{question.votesNum} votes</div>
                             <div>{getAnswerNum(question.answersNum)} </div>
@@ -95,6 +96,7 @@ const TopQuestions = () => {
                             {/* <div className='questions-single-question-body'>{question.body}</div> */}
                             {/* <div className='questions-single-question-tag'>{question.category}</div> */}
                         </div>
+                        </div>
                         <div className='questions-single-question-user'>
                             {question.profileImg ?
                                 <div>
@@ -105,7 +107,7 @@ const TopQuestions = () => {
 
                             }
                             <span>{question.userName} asked </span>
-                            <span>{getAskedTime(question.createdAt)}</span>
+                            <span className='questions-time'>{getAskedTime(question.createdAt)}</span>
                         </div>
                     </div>
                 ))

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addOneQustion } from "../../store/questions";
 
-// import './CreateQuestion.css';
+import '../CSS/CreateQuestion.css';
 
 const CreateQuestion = () => {
     const dispatch = useDispatch();
@@ -63,11 +63,11 @@ const CreateQuestion = () => {
 
     return (
         <div className="create-question-wrapper">
-            <h1>Ask a public question</h1>
+            <div className="create-question-h1">Ask a public question</div>
             <form className="create-question-form" onSubmit={handleSubmit}>
             <div className="create-question-title">
-                <div className="create-question-title-head">Title</div>
-                <div className="create-question-title-sub">Be specific and imagine you are asking a question to another person. Minimum 15 characters.</div>
+                <div className="create-question-head">Title</div>
+                <div className="create-question-head-sub">Be specific and imagine you are asking a question to another person. Minimum 15 characters.</div>
                 <div>
                     {hasSubmitted && errors?.map((error, i) => {
                         if (error.split(" ")[0] === 'Title')
@@ -85,8 +85,8 @@ const CreateQuestion = () => {
             </div>
 
             <div className="create-question-body">
-                <div className="create-question-body-head">Body</div>
-                <div className="create-question-body-sub">The body of your question contains your problem details and results. Minimum 30 characters.</div>
+                <div className="create-question-head">Body</div>
+                <div className="create-question-head-sub">The body of your question contains your problem details and results. Minimum 30 characters.</div>
                 <div>
                     {hasSubmitted && errors?.map((error, i) => {
                         if (error.split(" ")[0] === 'Body')
