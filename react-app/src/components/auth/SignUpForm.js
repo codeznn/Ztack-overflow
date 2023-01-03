@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import logoPic from '../images/favicon.png'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -50,60 +51,81 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <>
+    <div className='login-wrapper'>
+      <div className="login-container">
       <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>Display Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      {/* <div>
-        <label>ProfileImage</label>
-        <input
-          name='profile_image'
-          onChange={updateUrl}
-          value={url}
-        ></input>
-      </div> */}
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
+          <img src={logoPic} alt='logoPic' className='logo-pic'></img>
       </div>
 
-      <button type='submit'>Sign Up</button>
-    </form>
+      <form onSubmit={onSignUp} className='login-form'>
+        <div>
+          {errors.map((error, i) => (
+            <div key={i} className='login-error'>{error}</div>
+          ))}
+        </div>
+        <div>
+          <label className='login-label'>Display Name</label>
+          <br></br>
+          <input
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+            className='login-input'
+          ></input>
+        </div>
+        <div>
+          <label className='login-label'>Email</label>
+          <br></br>
+          <input
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            className='login-input'
+          ></input>
+        </div>
+        {/* <div>
+          <label>ProfileImage</label>
+          <input
+            name='profile_image'
+            onChange={updateUrl}
+            value={url}
+          ></input>
+        </div> */}
+        <div>
+          <label className='login-label'>Password</label>
+          <br></br>
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            className='login-input'
+          ></input>
+        </div>
+        <div>
+          <label className='login-label'>Repeat Password</label>
+          <br></br>
+          <input
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            className='login-input'
+          ></input>
+        </div>
+
+        <button type='submit' className='login-login-button'>Sign Up</button>
+      </form>
+        <div className='login-sentence'>Already have an account?
+          <Link style={{ textDecoration: "none", color: "blue" }} to={`/login`}> Log in</Link>
+        </div>
+      </div>
+    </div>
+    </>
   );
 };
 
