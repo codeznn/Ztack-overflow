@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import { getAllQuestions } from '../../store/questions';
 
-// import "./questions.css";
+import "../CSS/Questions.css";
 
 const AllQuestions = () => {
     const dispatch = useDispatch();
@@ -72,12 +72,13 @@ const AllQuestions = () => {
 
     return (
         <div className='questions-container'>
-            <div className='questions-top'>
-                <h1>All Questions</h1>
-                <button type='button' onClick={handleAskClick}>Ask Question</button>
-
+            <div className='questions-first'>
+                <div className='questions-top'>
+                    <h1>All Questions</h1>
+                    <button type='button' onClick={handleAskClick} className='questions-ask'>Ask Question</button>
+                </div>
+                <div className='questions-total-num'>{totalNum} qestions</div>
             </div>
-            <div className='questions-total-num'>{totalNum} questions</div>
             <div className='questions-single-container'>
                 {questionArr.map((question) => (
                     <div key={question.id} className="questions-single-question" style={{ textDecoration: 'none'}}>

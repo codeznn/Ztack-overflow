@@ -90,12 +90,14 @@ const SearchQuestions = () => {
 
     return (
         <div className='questions-container'>
-            <div className='questions-top'>
-                <h1>Search Result</h1>
-                <button type='button' onClick={handleAskClick}>Ask Question</button>
+            <div className='questions-first'>
+                <div className='questions-top'>
+                    <h1>Search Result</h1>
+                    <button type='button' onClick={handleAskClick} className='questions-ask'>Ask Question</button>
 
+                </div>
+                <div className='questions-total-num'>{totalNum} results</div>
             </div>
-            <div className='questions-total-num'>{totalNum} results</div>
             <div className='questions-single-container'>
 
                 {questionArr.map((question) => (
