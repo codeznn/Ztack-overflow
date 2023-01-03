@@ -5,6 +5,11 @@ html, body {
 	border: 0;
     margin-top: -10px;
 }
+
+body {
+    background-color: rgb(235, 232, 232);
+}
+
 .questions-userImg {
     height: 40px;
     width: auto;
