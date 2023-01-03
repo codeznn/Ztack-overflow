@@ -1,0 +1,34 @@
+.create-question-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin:0 auto;
+    padding-top: 100px;
+    width: 50%;
+}
+
+.create-question-h1 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.create-question-form {
+
+}
+
+.create-question-head {
+
+}
+
+.create-question-head-sub {
+
+}
+
+.create-question-errors {
+    color: red;
+    margin-bottom: 3px;
+}
+
+.create-question-errors {
+
+}

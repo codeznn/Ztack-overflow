@@ -4,6 +4,7 @@ import { Link, useHistory, NavLink } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import searchCoin from '../images/flat magnifying glass.png';
 
+import "../CSS/Questions.css";
 
 const SearchQuestions = () => {
     const dispatch = useDispatch();
@@ -69,64 +70,78 @@ const SearchQuestions = () => {
     }
 
     if (questionArr.length === 0) return(
-        <div className='questions-container'>
-            <div className='questions-top'>
-                <h1>Search Result</h1>
-                <button type='button' onClick={handleAskClick}>Ask Question</button>
+        <div className='questions-wrapper'>
+            <div className='questions-container'>
+                <div className='questions-first'>
+                    <div className='questions-top'>
+                        <h1>Search Result</h1>
+                        <button type='button' onClick={handleAskClick} className='questions-ask'>Ask Question</button>
 
-            </div>
-            <div className='questions-total-num'>{totalNum} results</div>
-            <div className='questions-single-container-no'>
-                <div className='search-pic'>
-                    <img src={searchCoin} alt="searchCoin"></img>
-                    <div>We couldn't find anything for {keyword}</div>
-                    <div>Search options: not deleted</div>
-                    <div>Try different or less specific keywords.</div>
+                    </div>
+                    <div className='questions-total-num'>{totalNum} results</div>
+                </div>
+                <div className='questions-single-container-no'>
+                    <div className='search-pic'>
+                        <img src={searchCoin} alt="searchCoin" className='questions-search-pic'></img>
+                        <div className='questions-search-sentence-1'>We couldn't find anything for <span className='questions-search-sentence-keyword'>{keyword}</span></div>
+                        <div className='questions-search-sentence-2'><span className='questions-search-sentence-keyword'>Search options:</span> not deleted</div>
+                        <div className='questions-search-sentence-2'>Try different or less specific keywords.</div>
 
+                    </div>
                 </div>
             </div>
         </div>
     );
 
     return (
-        <div className='questions-container'>
-            <div className='questions-top'>
-                <h1>Search Result</h1>
-                <button type='button' onClick={handleAskClick}>Ask Question</button>
+        <div className='questions-wrapper'>
+            <div className='questions-container'>
+                <div className='questions-first'>
+                    <div className='questions-top'>
+                        <h1>Search Result</h1>
+                        <button type='button' onClick={handleAskClick} className='questions-ask'>Ask Question</button>
 
-            </div>
-            <div className='questions-total-num'>{totalNum} results</div>
-            <div className='questions-single-container'>
-
-                {questionArr.map((question) => (
-                    <div key={question.id} className="questions-single-question" style={{ textDecoration: 'none'}}>
-                        <div className='questions-single-question-left'>
-                            <div>{question.votesNum} votes</div>
-                            <div>{getAnswerNum(question.answersNum)} </div>
-                        </div>
-                        <div className='questions-single-question-right'>
-                            <div className='questions-single-question-title'>
-                                <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}}>{question.title}</NavLink>
-                            </div>
-                            <div className='questions-single-question-body'>{question.body}</div>
-                            {/* <div className='questions-single-question-tag'>{question.category}</div> */}
-                        </div>
-                        <div className='questions-single-question-user'>
-                            {question.profileImg ?
-                                <div>
-                                    <img src={question.profileImg} className="questions-userImg"></img>
-                                </div>
-                                :
-                                <div className="questions-no-userImg">{question.userName[0].toUpperCase()}</div>
-
-                            }
-                            <span>{question.userName} asked </span>
-                            <span>{getAskedTime(question.createdAt)}</span>
-                        </div>
                     </div>
-                ))
+                    <div className='questions-total-num'>{totalNum} results</div>
+                </div>
+                <div className='questions-single-container'>
 
-                }
+                    {questionArr.map((question) => (
+                        <div key={question.id} className="questions-single-question" style={{ textDecoration: 'none'}}>
+                            <div className='questions-single-question-top'>
+                                <div className='questions-single-question-left'>
+                                    <div>{question.votesNum} votes</div>
+                                    <div>{getAnswerNum(question.answersNum)} </div>
+                                </div>
+                                <div className='questions-single-question-right'>
+                                    <div className='questions-single-question-title'>
+                                        <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}}>{question.title}</NavLink>
+                                    </div>
+                                    {question.body.length > 180?
+                                        <div className='questions-single-question-body'>{question.body.slice(0,180)}...</div>
+                                        :
+                                        <div className='questions-single-question-body'>{question.body}</div>
+                                    }
+                                    {/* <div className='questions-single-question-tag'>{question.category}</div> */}
+                                </div>
+                            </div>
+                            <div className='questions-single-question-user'>
+                                {question.profileImg ?
+                                    <div>
+                                        <img src={question.profileImg} className="questions-userImg"></img>
+                                    </div>
+                                    :
+                                    <div className="questions-no-userImg">{question.userName[0].toUpperCase()}</div>
+
+                                }
+                                <span>{question.userName} asked </span>
+                                <span className='questions-time'>{getAskedTime(question.createdAt)}</span>
+                            </div>
+                        </div>
+                    ))
+
+                    }
+                </div>
             </div>
         </div>
     )

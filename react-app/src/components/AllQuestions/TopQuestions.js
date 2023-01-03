@@ -72,15 +72,19 @@ const TopQuestions = () => {
     if (!questionObj) return null;
 
     return (
+        <div className='questions-wrapper'>
         <div className='questions-container'>
-            <div className='questions-top'>
-                <h1>Top Questions</h1>
-                <button type='button' onClick={handleAskClick}>Ask Question</button>
+            <div className='questions-first'>
+                <div className='questions-top'>
+                    <h1>Top Questions</h1>
+                    <button type='button' onClick={handleAskClick} className='questions-ask'>Ask Question</button>
+                    {/* <div className='questions-total-num'>{totalNum} results</div> */}
+                </div>
             </div>
-            <div className='questions-total-num'>{totalNum} questions</div>
             <div className='questions-single-container'>
                 {questionArr.map((question) => (
                     <div key={question.id} className="questions-single-question" style={{ textDecoration: 'none'}}>
+                        <div className='questions-single-question-top'>
                         <div className='questions-single-question-left'>
                             <div>{question.votesNum} votes</div>
                             <div>{getAnswerNum(question.answersNum)} </div>
@@ -89,8 +93,9 @@ const TopQuestions = () => {
                             <div className='questions-single-question-title'>
                                 <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}}>{question.title}</NavLink>
                             </div>
-                            <div className='questions-single-question-body'>{question.body}</div>
+                            {/* <div className='questions-single-question-body'>{question.body}</div> */}
                             {/* <div className='questions-single-question-tag'>{question.category}</div> */}
+                        </div>
                         </div>
                         <div className='questions-single-question-user'>
                             {question.profileImg ?
@@ -102,13 +107,14 @@ const TopQuestions = () => {
 
                             }
                             <span>{question.userName} asked </span>
-                            <span>{getAskedTime(question.createdAt)}</span>
+                            <span className='questions-time'>{getAskedTime(question.createdAt)}</span>
                         </div>
                     </div>
                 ))
 
                 }
             </div>
+        </div>
         </div>
     )
 }
