@@ -16,7 +16,7 @@ const DeleteAnswer = ({ answerId, questionId }) => {
     }
 
     return (
-        <button type="button" onClick={deleteAnswerClick}>Delete</button>
+        <button type="button" onClick={deleteAnswerClick} className="single-question-delete">Delete</button>
     )
 }
 

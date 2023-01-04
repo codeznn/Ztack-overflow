@@ -99,8 +99,8 @@ const EditQuestion = () => {
             </div>
 
             <div className="create-question-button-container">
-                <button type="submit" className="create-question-button">Save edits</button>
-                <button type="button" onClick={handleCancelClick} className="create-question-button">cancel</button>
+                <button type="submit" className="create-question-button">Save Edits</button>
+                <button type="button" onClick={handleCancelClick} className="create-question-button">Cancel</button>
             </div>
             </form>
 

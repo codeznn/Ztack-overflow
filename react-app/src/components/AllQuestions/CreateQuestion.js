@@ -104,7 +104,7 @@ const CreateQuestion = () => {
             </div>
 
             <div className="create-question-button-container">
-                <button type="submit" className="create-question-button">Post your question</button>
+                <button type="submit" className="create-question-button">Post Your Question</button>
             </div>
             </form>
 

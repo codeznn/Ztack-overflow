@@ -56,29 +56,30 @@ const AllAnswers = ( { questionId, user } ) => {
 
     return (
         <>
-        <div>
+        <div >
             {answersArr?.map((answer, i) => (
                 <div key={i} className='single-answer'>
                     <div className='single-answer-content'>{answer.content}</div>
-                    <div className='single-question-modify'>
-                        {user && user.id == answer.ownerId
-                        ?
-                        <div>
-                        <Link to={`/answers/${answer.id}/edit`} style={{ textDecoration: 'none'}} >Edit </Link>
-                        <DeleteAnswer answerId={answer.id} questionId={questionId}/>
+                    <div className='single-answer-detail'>
+                        <div className='single-answer-modify'>
+                            {user && user.id == answer.ownerId
+                            ?
+                            <div>
+                            <Link to={`/answers/${answer.id}/edit`} className="single-question-delete" style={{ textDecoration: 'none'}} >Edit </Link>
+                            <DeleteAnswer answerId={answer.id} questionId={questionId}/>
+                            </div>
+                            :
+                            null
+                            }
                         </div>
-                        :
-                        null
-                        }
+                        <div className='single-answer-user'>
+                            <span singel-question-time>answered  {getAnsweredTime(answer.createdAt)}</span>
+                            {answer.User.profileImage && <img src={answer.User.profileImage} className="questions-userImg"></img>}
+                            {!answer.User.profileImage && <div className="questions-no-userImg">{answer.User.userName[0].toUpperCase()}</div>}
+                            <span className='singel-question-username'>{answer.User.userName}  </span>
+                        </div>
                     </div>
-            <div className='single-answer-user'>
-                {answer.User.profileImage && <img src={answer.User.profileImage} className="questions-userImg"></img>}
-                {!answer.User.profileImage && <div className="questions-no-userImg">{answer.User.userName[0].toUpperCase()}</div>}
-                <span>{answer.User.userName} answered </span>
-                <span>{getAnsweredTime(answer.createdAt)}</span>
                 </div>
-            </div>
-
 
             ))
             }
