@@ -55,7 +55,9 @@ const NavBar = () => {
                             {user.profileImage ?
                                 <img className='navbar-profileimg'src={user.profileImage} alt='img'></img>
                             :
-                                <div className='navbar-no-profileimg'>{CapLetter}</div>
+                                <div className='navbar-no-profileimg'>
+                                    <div className='navbar-no-profileimg-letter'>{CapLetter}</div>
+                                </div>
                             }
                         </div>
                         <div className='navbar-logout'>

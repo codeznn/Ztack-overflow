@@ -8,10 +8,23 @@ const EditQuestion = () => {
     const history = useHistory();
     const { questionId } = useParams();
     const question = useSelector((state) => state.questions.allQuestions[questionId])
+    //console.log("=========", question)
     const [title, setTitle] = useState(question?.title);
+    //console.log("=========", title)
     const [body, setBody] = useState(question?.body);
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
+
+    useEffect(() => {
+        if (question) {
+            if (question.title) {
+                setTitle(question.title)
+            }
+            if (question.body) {
+                setBody(question.body)
+            }
+        }
+    }, [question?.title, question?.body]);
 
     useEffect(() => {
         dispatch(getAllQuestions())

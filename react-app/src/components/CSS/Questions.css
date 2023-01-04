@@ -95,10 +95,14 @@ h1 {
     background-color: green;
     color: white;
     height: 20px;
-    width: auto;
+    width: 20px;
     margin-right: 5px;
     border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .questions-time {
     margin-left: 3px;
