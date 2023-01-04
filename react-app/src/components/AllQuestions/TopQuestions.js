@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import { getAllQuestions, getTopQuestions } from '../../store/questions';
+import Footer from '../Navigation/Footer';
 
 // import "./questions.css";
 
