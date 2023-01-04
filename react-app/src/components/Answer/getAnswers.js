@@ -73,10 +73,12 @@ const AllAnswers = ( { questionId, user } ) => {
                             }
                         </div>
                         <div className='single-answer-user'>
-                            <span singel-question-time>answered  {getAnsweredTime(answer.createdAt)}</span>
-                            {answer.User.profileImage && <img src={answer.User.profileImage} className="questions-userImg"></img>}
-                            {!answer.User.profileImage && <div className="questions-no-userImg">{answer.User.userName[0].toUpperCase()}</div>}
-                            <span className='singel-question-username'>{answer.User.userName}  </span>
+                            <div className='singel-question-time'>answered  {getAnsweredTime(answer.createdAt)}</div>
+                            <div className='singel-question-profile'>
+                                {answer.User.profileImage && <img src={answer.User.profileImage} className="questions-userImg"></img>}
+                                {!answer.User.profileImage && <div className="questions-no-userImg">{answer.User.userName[0].toUpperCase()}</div>}
+                                <span className='singel-question-username'>{answer.User.userName}  </span>
+                            </div>
                         </div>
                     </div>
                 </div>

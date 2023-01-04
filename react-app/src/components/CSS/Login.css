@@ -50,6 +50,7 @@
     font-size: 14px;
     color: white;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .login-demo-button {
@@ -62,6 +63,7 @@
     font-size: 14px;
     color: white;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .login-sentence {

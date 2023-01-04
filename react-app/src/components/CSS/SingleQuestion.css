@@ -68,7 +68,7 @@
 .single-question-owner {
     margin-right: 5px;
     width: 180px;
-    height: 60px;
+    height: fit-content;
     background-color: rgb(189, 231, 244);
     padding-left: 5px;
 }
@@ -76,14 +76,18 @@
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+.singel-question-profile {
+    display: flex;
+    flex-direction: row;
+}
+
 .singel-question-username {
-    margin-left: 5px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 
 }
 
 .single-question-answer-wrapper {
-
     padding-top: 30px;
 
 }
@@ -125,8 +129,8 @@
 
 .single-answer-user {
     margin-right: 5px;
-    width: 180px;
-    height: 60px;
+    width: 200px;
+    height: fit-content;
     padding-left: 5px;
 }
 
