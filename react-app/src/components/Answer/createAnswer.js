@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addOneAnswer } from "../../store/answers";
+import { addOneAnswer, getAllAnswers } from "../../store/answers";
 
 const CreateAnswer = ({ questionId }) => {
     const dispatch = useDispatch();
@@ -10,6 +10,8 @@ const CreateAnswer = ({ questionId }) => {
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
     //console.log("=== in createAnswer component-questionId:", questionId)
+
+
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -29,6 +31,7 @@ const CreateAnswer = ({ questionId }) => {
             setErrors(backendError)
             //console.log("=== in createAnswer component-errors2:", errors)
         }
+
 
     }
 

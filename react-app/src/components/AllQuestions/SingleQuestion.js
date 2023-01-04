@@ -17,10 +17,15 @@ const SingleQuestion = () => {
     const question = useSelector(state => state.questions.singleQuestion)
     //console.log("======in singleQuestion components-question:", question)
 
+    const answerNum = useSelector(state => state.questions.singleQuestion.answersNum)
+    const answers = useSelector(state => state.answers.answers)
+
+    //console.log("===========", answers)
+
     useEffect(() => {
         dispatch(getOneQuestion(questionId))
-        dispatch(getAllAnswers(questionId))
-    }, [dispatch, questionId])
+        // dispatch(getAllAnswers(questionId))
+    }, [dispatch, questionId, answers])
 
     if (!question) return null;
 

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addOneQustion } from "../../store/questions";
 
 import '../CSS/CreateQuestion.css';
+import { getAllAnswers } from "../../store/answers";
 
 const CreateQuestion = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const CreateQuestion = () => {
     const [body, setBody] = useState('');
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
+
 
 
     if (!sessionUser) {
@@ -49,10 +51,12 @@ const CreateQuestion = () => {
             history.push(`/questions/${response.id}`)
         }
 
+
         setTitle('')
         setBody('')
         setErrors([])
         setHasSubmitted(false)
+
 
     }
 
