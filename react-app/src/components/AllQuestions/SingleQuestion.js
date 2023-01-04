@@ -6,7 +6,7 @@ import questions, { getOneQuestion, removeOneQuestion } from '../../store/questi
 import CreateAnswer from '../Answer/createAnswer';
 import AllAnswers from '../Answer/getAnswers';
 
-// import './SingleQuestion.css'
+import '../CSS/SingleQuestion.css'
 
 const SingleQuestion = () => {
     const { questionId } = useParams();
@@ -26,9 +26,9 @@ const SingleQuestion = () => {
 
     const getAnswerNum = (num) => {
         if (num ===1) {
-            return num + " answer"
+            return num + " Answer"
         } else {
-            return num + " answers"
+            return num + " Answers"
         }
     }
 
@@ -86,37 +86,40 @@ const SingleQuestion = () => {
 
     return (
         <div className='single-question-wrapper'>
+            <div className='single-question-container'>
             <div className='single-question-upper'>
                 <div className='single-question-title'>{question.title}</div>
                 <div className='single-question-askbutton'>
-                    <button type='button' onClick={handleAskClick}>Ask Question</button>
+                    <button type='button' onClick={handleAskClick} className='single-question-askbutton'>Ask Question</button>
                 </div>
             </div>
             <div className='single-question-body'>{question.body}</div>
-            <div className='single-question-owner'>
-                <div className='singel-question-time'>asked {getAskedTime(question.createdAt)}</div>
-                <div className='singel-question-profile'>
-                    {question.profileImg && <img src={question.profileImg} className="questions-userImg"></img>}
-                    {!question.profileImg && question.userName &&
-                        <div className="questions-no-userImg">{question.userName[0].toUpperCase()}</div>
+            <div className='single-question-detail'>
+                <div className='single-question-modify'>
+                    {sessionUser && sessionUser.id == question.ownerId
+                    ?
+                    <div>
+                        <Link to={`/questions/${questionId}/edit`} className="single-question-delete" style={{ textDecoration: 'none'} } >Edit </Link>
+                        <button type='button' onClick={deleteQuestionClick} className='single-question-delete'>Delete</button>
+                    </div>
+                    :
+                    null
                     }
                 </div>
-                <div className='singel-question-username'>{question.userName}</div>
-            </div>
-            <div className='single-question-modify'>
-                {sessionUser && sessionUser.id == question.ownerId
-                ?
-                <div>
-                    <Link to={`/questions/${questionId}/edit`} style={{ textDecoration: 'none'}} >Edit </Link>
-                    <button type='button' onClick={deleteQuestionClick}>Delete</button>
+                <div className='single-question-owner'>
+                    <div className='singel-question-time'>asked {getAskedTime(question.createdAt)}</div>
+                    <div className='singel-question-profile'>
+                        {question.profileImg && <img src={question.profileImg} className="questions-userImg"></img>}
+                        {!question.profileImg && question.userName &&
+                            <div className="questions-no-userImg">{question.userName[0].toUpperCase()}</div>
+                        }
+                        <span className='singel-question-username'>{question.userName}</span>
+                    </div>
                 </div>
-                :
-                null
-                }
             </div>
 
             <div className='single-question-answer-wrapper'>
-                <div className='single-question-answerNum'>{getAnswerNum(question.answersNum)} </div>
+                {question.answersNum !== 0 && <div className='single-question-answerNum'>{getAnswerNum(question.answersNum)} </div>}
                 <div className='single-question-answer-container'>
                     <AllAnswers questionId={questionId} user={sessionUser} />
                 </div>
@@ -134,7 +137,7 @@ const SingleQuestion = () => {
             </div>
 
 
-
+            </div>
 
         </div>
     )

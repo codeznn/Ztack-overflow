@@ -52,12 +52,12 @@ const EditAnswer = () => {
     }
 
     return (
-        <div className="create-answer-wrapper">
-        <h1>Edit your answer</h1>
+        <div className="create-question-wrapper">
+        <div className="create-question-h1">Edit your answer</div>
         <form className="create-answer-form" onSubmit={handleSubmit}>
 
         <div className="create-answer-body">
-
+            <div className="create-question-head-sub">Minimum 30 characters.</div>
             <div>
                 {hasSubmitted && errors?.map((error, i) => {
                     if (error.split(" ")[0] === 'Content')
@@ -66,7 +66,7 @@ const EditAnswer = () => {
                         )
                 })}
             </div>
-            <input className="create-answer-input"
+            <textarea className="create-question-textarea"
                 type="text"
                 value={content}
                 required
@@ -75,8 +75,8 @@ const EditAnswer = () => {
         </div>
 
         <div className="create-answer-button">
-            <button type="submit">Save edits</button>
-            <button type="button" onClick={handleCancelClick}>cancel</button>
+            <button type="submit" className="create-question-button">Save Edits</button>
+            <button type="button" onClick={handleCancelClick} className="create-question-button">Cancel</button>
         </div>
         </form>
 

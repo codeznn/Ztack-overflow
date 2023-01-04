@@ -12,16 +12,14 @@
     margin-bottom: 30px;
 }
 
-.create-question-form {
-
-}
 
 .create-question-head {
-
+    font-size: 20px;
 }
 
 .create-question-head-sub {
-
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .create-question-errors {
@@ -29,6 +27,34 @@
     margin-bottom: 3px;
 }
 
-.create-question-errors {
+.create-question-input {
+    margin-bottom: 6px;
+    border: solid lightgray 1px;
+    border-radius: 3px;
+    width: 600px;
+    height: 35px;
+    font-size: 16px;
+}
 
+.create-question-button {
+    width: 160px;
+    height: 30px;
+    background-color: rgb(42, 164, 239);
+    border: none;
+    margin-top: 5px;
+    font-size: 16px;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.create-question-textarea {
+    margin-bottom: 6px;
+    border: solid lightgray 1px;
+    border-radius: 3px;
+    width: 600px;
+    height: 180px;
+    font-size: 16px;
+    overflow-y: auto;
 }

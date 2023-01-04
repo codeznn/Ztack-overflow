@@ -45,6 +45,7 @@ const CreateAnswer = ({ questionId }) => {
         <form className="create-answer-form" onSubmit={handleSubmit}>
 
         <div className="create-answer-body">
+            <div className="create-question-head-sub">Minimum 30 characters.</div>
 
             <div>
                 {errors && errors?.map((error, i) => {
@@ -53,7 +54,7 @@ const CreateAnswer = ({ questionId }) => {
                     )
                 })}
             </div>
-            <input className="create-answer-input"
+            <textarea className="create-answer-textarea"
                 type="text"
                 value={content}
                 required
@@ -62,8 +63,8 @@ const CreateAnswer = ({ questionId }) => {
         </div>
 
         <div className="create-answer-button">
-            <button type="submit">Post your answer</button>
-            <button type="button" onClick={handleCancelClick}>Draft</button>
+            <button type="submit" className="create-question-button">Post Your Answer</button>
+            <button type="button" onClick={handleCancelClick} className="create-question-button">Draft</button>
         </div>
         </form>
 

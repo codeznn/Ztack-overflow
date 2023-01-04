@@ -76,7 +76,7 @@ const CreateQuestion = () => {
                             )
                     })}
                 </div>
-                <input className="create-question-title-input"
+                <input className="create-question-input"
                     type="text"
                     value={title}
                     required
@@ -95,7 +95,7 @@ const CreateQuestion = () => {
                             )
                     })}
                 </div>
-                <input className="create-question-body-input"
+                <input className="create-question-input"
                     type="text"
                     value={body}
                     required
@@ -103,8 +103,8 @@ const CreateQuestion = () => {
                 />
             </div>
 
-            <div className="create-question-button">
-                <button type="submit">Post your question</button>
+            <div className="create-question-button-container">
+                <button type="submit" className="create-question-button">Post Your Question</button>
             </div>
             </form>
 
