@@ -4,6 +4,13 @@
     margin-bottom: 20px;
   }
 
+  .notfound-header-title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 100px;
+  }
+
+
   .logo-back {
     display: flex;
     justify-content: center;
@@ -20,4 +27,5 @@
   .cursor-pointer {
     cursor: pointer;
     text-decoration: underline;
+    font-size: 20px;
   }

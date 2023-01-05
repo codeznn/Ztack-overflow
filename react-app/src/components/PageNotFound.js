@@ -8,9 +8,9 @@ const PageNotFound = () => {
   return (
     <div className="wrapper-center">
       <div className="notfound-header">
-        <h1>Page Not Found</h1>
+        <div className="notfound-header-title">Page Not Found</div>
       </div>
-      <h2 className="notfound-header cursor-pointer" onClick={() => history.push("/")}>Go back to the home page</h2>
+      <div className="notfound-header cursor-pointer" onClick={() => history.push("/home")}>Go back to the home page</div>
     </div>
   )
 }

@@ -90,7 +90,7 @@ const AllQuestions = () => {
                                 </div>
                                 <div className='questions-single-question-right'>
                                     <div className='questions-single-question-title'>
-                                        <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}}>{question.title}</NavLink>
+                                        <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}} className='questions-single-question-title'>{question.title}</NavLink>
                                     </div>
                                         {question.body.length > 180?
                                         <div className='questions-single-question-body'>{question.body.slice(0,180)}...</div>

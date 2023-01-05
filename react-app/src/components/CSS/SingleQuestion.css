@@ -1,9 +1,9 @@
-.single-question-wrapper {
+/* .single-question-wrapper {
     background-color: white;
     min-height: 1100px;
     display: flex;
     flex-direction: column;
-}
+} */
 
 .single-question-container {
     min-width: 800px;

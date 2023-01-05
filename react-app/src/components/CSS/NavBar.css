@@ -1,7 +1,9 @@
 nav {
     width: auto;
     margin: 0 auto;
-    background-color: rgb(249, 246, 246);
+    background-color: rgb(248, 249, 249);
+    /* background-color: rgb(249, 246, 246); */
+    box-shadow: 0px 0.8px 0px 0px rgba(211, 211, 211, .5);
 }
 
 .navBar-main {
