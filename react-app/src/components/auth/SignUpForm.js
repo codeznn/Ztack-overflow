@@ -25,7 +25,7 @@ const SignUpForm = () => {
         setErrors(data)
       }
     } else {
-        setErrors(["Please confirm the Repeat Password"])
+        setErrors(["Password: Please confirm the Repeat Password"])
     }
   };
 
@@ -67,11 +67,11 @@ const SignUpForm = () => {
       <form onSubmit={onSignUp} className='signup-form'>
         <div>
           {errors.map((error, i) => (
-            <div key={i} className='signup-error'>{error}</div>
+            <div key={i} className='signup-error'>{error.split(":")[1]}</div>
           ))}
         </div>
         <div>
-          <label className='signup-label'>Display Name</label>
+          <label className='signup-label'>Username</label>
           <br></br>
           <input
             type='text'

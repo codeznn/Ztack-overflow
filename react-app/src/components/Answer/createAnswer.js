@@ -67,7 +67,7 @@ const CreateAnswer = ({ questionId }) => {
 
         <div className="create-answer-button">
             <button type="submit" className="create-question-button">Post Your Answer</button>
-            <button type="button" onClick={handleCancelClick} className="create-question-button">Draft</button>
+            <button type="button" onClick={handleCancelClick} className="create-question-button">Cancel</button>
         </div>
         </form>
 
