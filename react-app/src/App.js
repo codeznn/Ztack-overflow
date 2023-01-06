@@ -17,6 +17,7 @@ import EditQuestion from './components/AllQuestions/EditQuestion';
 import EditAnswer from './components/Answer/editAnswer';
 import SearchQuestions from './components/AllQuestions/SearchQuestions';
 import PageNotFound from './components/PageNotFound';
+import Profile from './components/Navigation/Profile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +58,9 @@ function App() {
         </Route>
         <Route path='/questions/:questionId/edit' exact={true}>
           <EditQuestion />
+        </Route>
+        <Route path='/profile' exact={true}>
+          <Profile />
         </Route>
         {/* <Route path='/new-answer' exact={true}>
           <CreateQuestion />

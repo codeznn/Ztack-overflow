@@ -53,6 +53,13 @@ nav {
     align-items: center;
     justify-items: center;
 }
+
+.navbar-profileButtion {
+    border: none;
+    background-color: rgb(248, 249, 249);
+    cursor: pointer;
+}
+
 .navbar-profileimg {
     width: auto;
     height: 32px;

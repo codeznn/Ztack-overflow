@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector} from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import SearchBar from './SearchBar';
 import logo from '../images/Logo.png';
@@ -18,6 +18,10 @@ const NavBar = () => {
 
     const handleSignupClick = () => {
         return history.push('/sign-up')
+    }
+
+    const handleProfileClick = () => {
+        return history.push('/profile')
     }
 
   return (
@@ -51,7 +55,7 @@ const NavBar = () => {
             <div className='navbar-right'>
                 {user ?
                     <>
-                        <div className='navbar-profileButtion'>
+                        <button className='navbar-profileButtion' onClick={handleProfileClick}>
                             {user.profileImage ?
                                 <img className='navbar-profileimg'src={user.profileImage} alt='img'></img>
                             :
@@ -59,7 +63,7 @@ const NavBar = () => {
                                     <div className='navbar-no-profileimg-letter'>{CapLetter}</div>
                                 </div>
                             }
-                        </div>
+                        </button>
                         <div className='navbar-logout'>
                             <LogoutButton />
                         </div>
