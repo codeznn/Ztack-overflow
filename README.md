@@ -1,3 +1,53 @@
+# Welcome to Ztack overflow!
+
+Ztack overflow is a web application inspired by the [Stack overflow](https://stackoverflow.com/), which is a question and answer website for professional and enthusiast programmers.
+
+Live Site: [Ztack overflow](https://anya-etsy.onrender.com/)
+
+## Please see below links to project Wiki:
+
+* [Features List](https://github.com/codeznn/Ztack-overflow/wiki/Features-List)
+* [Database Schema](https://github.com/codeznn/Ztack-overflow/wiki/Database-Schema)
+* [User Stories](https://github.com/codeznn/Ztack-overflow/wiki/User-Stories)
+* [Frontend Routes](https://github.com/codeznn/Ztack-overflow/wiki/Frontend-Routes)
+* [Backend Routes](https://github.com/codeznn/Ztack-overflow/wiki/Backend-Routes)
+
+## Languages, Frameworks, Platforms and Libraries
+
+### Languages
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+### Backend
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-100000?style=for-the-badge&logo=sql&logoColor=BA1212&labelColor=AD0000&color=A90000) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+
+### Frontend
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+### Hosting
+![Render](https://img.shields.io/badge/Render-12100E?style=for-the-badge&logo=Render)
+
+## Splash Page
+![image](https://user-images.githubusercontent.com/99756315/211101946-4da6e393-59c9-4917-b6d5-9542e40950db.png)
+
+## Home Page(without logging in/logged in)
+![image](https://user-images.githubusercontent.com/99756315/211102487-8b548f4a-05b8-4d0a-88f3-78cd552b1a98.png)
+![image](https://user-images.githubusercontent.com/99756315/211102290-24138e12-b1d0-4204-8796-02a92ab4e778.png)
+
+## Log In/ Sign Up Modal
+![image](https://user-images.githubusercontent.com/99756315/211102142-ab9da1cb-e7e3-422a-8c4c-f155ba2edcee.png)
+![image](https://user-images.githubusercontent.com/99756315/211102199-d5bd946b-2547-4bd0-85d3-05722ed781ec.png)
+
+
+## Profile Page
+![image](https://user-images.githubusercontent.com/99756315/211102664-cd6ed49f-4338-4dbc-a63e-dc4f1459c63e.png)
+
+## Single-question page
+![image](https://user-images.githubusercontent.com/99756315/211102776-d266c45d-a375-4777-98de-27e3e184647d.png)
+
+## Ask new Questions
+![image](https://user-images.githubusercontent.com/99756315/211103060-ba5c47c0-35ab-4514-852c-7e6279f52685.png)
+
+
 # Flask React Project
 
 This is the starter for the Flask React project.
