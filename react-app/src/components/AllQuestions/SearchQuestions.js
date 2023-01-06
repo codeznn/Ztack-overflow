@@ -110,12 +110,12 @@ const SearchQuestions = () => {
                         <div key={question.id} className="questions-single-question" style={{ textDecoration: 'none'}}>
                             <div className='questions-single-question-top'>
                                 <div className='questions-single-question-left'>
-                                    <div>{question.votesNum} votes</div>
+                                    {/* <div>{question.votesNum} votes</div> */}
                                     <div>{getAnswerNum(question.answersNum)} </div>
                                 </div>
                                 <div className='questions-single-question-right'>
                                     <div className='questions-single-question-title'>
-                                        <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}}>{question.title}</NavLink>
+                                        <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}} className='questions-single-question-title'>{question.title}</NavLink>
                                     </div>
                                     {question.body.length > 180?
                                         <div className='questions-single-question-body'>{question.body.slice(0,180)}...</div>

@@ -1,10 +1,10 @@
-.questions-wrapper {
+/* .questions-wrapper {
     background-color: white;
     min-height: 1100px;
     display: flex;
     flex-direction: column;
 
-}
+} */
 .questions-container {
     width: 40%;
     margin:0 auto;
@@ -82,6 +82,11 @@ h1 {
     justify-content: flex-end;
     margin-right: 5px;
     margin-top: 10px;
+}
+
+.questions-single-question-title {
+    color: blue;
+    font-size: 18px;
 }
 
 .questions-userImg {

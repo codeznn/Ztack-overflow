@@ -63,3 +63,24 @@ class Answer(db.Model):
                 'profileImage': self.user.profilepic_url
             }
         }
+
+    def to_dict_with_question(self):
+        return {
+            'id': self.id,
+            'ownerId': self.owner_id,
+            'questionId': self.question_id,
+            'content': self.content,
+            'attachment': self.attachment,
+            'codeSnippet': self.code_snippet,
+            'createdAt': self.created_at,
+            'updateAt': self.updated_at,
+            'Question': {
+                'id': self.question.id,
+                'ownerId': self.question.owner_id,
+                'title': self.question.title,
+                'body': self.question.body,
+                'category': self.question.category,
+                'createdAt': self.question.created_at,
+                'updateAt': self.question.updated_at,
+            }
+    }

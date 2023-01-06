@@ -10,6 +10,11 @@ const allAnswers = (answers) => ({
     answers
 })
 
+const myAnswers = (answers) => ({
+    type: MY_ANSWERS,
+    answers
+})
+
 const addAnswer = (answer) => ({
     type: CREATE_ANSWER,
     answer
@@ -32,6 +37,16 @@ export const getAllAnswers = (questionId) => async (dispatch) => {
     if (response.ok) {
         const answers = await response.json();
         dispatch(allAnswers(answers))
+        return answers
+    }
+}
+
+export const getMyAnswers = () => async (dispatch) => {
+    const response = await fetch(`/api/answers/current`)
+
+    if (response.ok) {
+        const answers = await response.json();
+        dispatch(myAnswers(answers))
         return answers
     }
 }
@@ -102,6 +117,7 @@ export const removeOneAnswer = (answerId) => async (dispatch) => {
 
 const initialState = {
     answers: {},
+    myAnswers:{},
 }
 
 const answers = (state = initialState, action) => {
@@ -115,6 +131,13 @@ const answers = (state = initialState, action) => {
             newState = { ...state, answers: {}}
             action.answers.Answers.forEach(answer => {
                 newState.answers[answer.id] = answer
+            })
+            return newState
+
+        case MY_ANSWERS:
+            newState = { ...state, myAnswers: {}}
+            action.answers.Answers.forEach(answer => {
+                newState.myAnswers[answer.id] = answer
             })
             return newState
 

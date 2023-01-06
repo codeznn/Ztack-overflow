@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import logoPic from '../images/favicon.png'
+import sidePic from '../images/signup.png'
+
+import '../CSS/SignUp.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -22,7 +25,7 @@ const SignUpForm = () => {
         setErrors(data)
       }
     } else {
-        setErrors(["Please confirm the Repeat Password"])
+        setErrors(["Password: Please confirm the Repeat Password"])
     }
   };
 
@@ -52,38 +55,41 @@ const SignUpForm = () => {
 
   return (
     <>
-    <div className='login-wrapper'>
-      <div className="login-container">
-      <div>
-          <img src={logoPic} alt='logoPic' className='logo-pic'></img>
+    <div className='signup-wrapper'>
+      <div className='signup-pic-container'>
+        <img className='signup-pic' src={sidePic}></img>
       </div>
+      <div className="signup-container">
+      {/* <div>
+          <img src={logoPic} alt='logoPic' className='logo-pic'></img>
+      </div> */}
 
-      <form onSubmit={onSignUp} className='login-form'>
+      <form onSubmit={onSignUp} className='signup-form'>
         <div>
           {errors.map((error, i) => (
-            <div key={i} className='login-error'>{error}</div>
+            <div key={i} className='signup-error'>{error.split(":")[1]}</div>
           ))}
         </div>
         <div>
-          <label className='login-label'>Display Name</label>
+          <label className='signup-label'>Username</label>
           <br></br>
           <input
             type='text'
             name='username'
             onChange={updateUsername}
             value={username}
-            className='login-input'
+            className='signup-input'
           ></input>
         </div>
         <div>
-          <label className='login-label'>Email</label>
+          <label className='signup-label'>Email</label>
           <br></br>
           <input
             type='text'
             name='email'
             onChange={updateEmail}
             value={email}
-            className='login-input'
+            className='signup-input'
           ></input>
         </div>
         {/* <div>
@@ -95,18 +101,18 @@ const SignUpForm = () => {
           ></input>
         </div> */}
         <div>
-          <label className='login-label'>Password</label>
+          <label className='signup-label'>Password</label>
           <br></br>
           <input
             type='password'
             name='password'
             onChange={updatePassword}
             value={password}
-            className='login-input'
+            className='signup-input'
           ></input>
         </div>
         <div>
-          <label className='login-label'>Repeat Password</label>
+          <label className='signup-label'>Repeat Password</label>
           <br></br>
           <input
             type='password'
@@ -114,13 +120,13 @@ const SignUpForm = () => {
             onChange={updateRepeatPassword}
             value={repeatPassword}
             required={true}
-            className='login-input'
+            className='signup-input'
           ></input>
         </div>
 
-        <button type='submit' className='login-login-button'>Sign Up</button>
+        <button type='submit' className='signup-login-button'>Sign Up</button>
       </form>
-        <div className='login-sentence'>Already have an account?
+        <div className='signup-sentence'>Already have an account?
           <Link style={{ textDecoration: "none", color: "blue" }} to={`/login`}> Log in</Link>
         </div>
       </div>

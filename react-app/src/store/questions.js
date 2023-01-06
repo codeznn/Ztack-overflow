@@ -43,6 +43,12 @@ const removeQuestion = (questionId) => ({
     questionId
 })
 
+const myQuestions = (questions) => ({
+    type: MY_QUESTIONS,
+    questions
+})
+
+
 export const getAllQuestions = () => async (dispatch) =>  {
     const response = await fetch('/api/questions/all')
 
@@ -72,6 +78,18 @@ export const getSearchQuestions = (keyword) => async (dispatch) => {
         return questions
     }
 }
+
+
+export const getMyQuestions = () => async (dispatch) => {
+    const response = await fetch(`/api/questions/current`)
+
+    if (response.ok) {
+        const questions = await response.json();
+        dispatch(myQuestions(questions))
+        return questions
+    }
+}
+
 
 export const getOneQuestion = (id) => async (dispatch) => {
 
@@ -142,11 +160,14 @@ export const removeOneQuestion = (questionId) => async (dispatch) => {
 }
 
 
+
+
 const initialState = {
     allQuestions: {},
     topQuestions: {},
     searchQuestions: {},
     singleQuestion: {},
+    myQuestions: {},
 }
 
 const questions = (state = initialState, action) => {
@@ -169,6 +190,13 @@ const questions = (state = initialState, action) => {
             newState = { ...state, searchQuestions: {}}
             action.questions.Questions.forEach(question => {
                 newState.searchQuestions[question.id] = question
+            })
+            return newState;
+
+        case MY_QUESTIONS:
+            newState = { ...state, myQuestions: {}}
+            action.questions.Questions.forEach(question => {
+                newState.myQuestions[question.id] = question
             })
             return newState;
 

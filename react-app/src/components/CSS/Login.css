@@ -3,16 +3,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-top: 200px;
 }
 
 .logo-pic {
-    width: 50px;
+    width: 80px;
 }
 
 .login-error {
     color: red;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
+    font-size: 17px;
 }
 
 .login-form {
@@ -20,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 5px;
-    width: 300px;
+    width: 400px;
     background-color: white;
     border-radius: 10px;
     padding-top: 30px;
@@ -32,35 +34,35 @@
 }
 
 .login-input {
-    width: 200px;
-    height: 25px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    width: 300px;
+    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 2px;
     border: solid 1px lightgrey;
 }
 
 .login-login-button {
-    width: 208px;
-    height: 30px;
+    width: 308px;
+    height: 35px;
     background-color: rgb(42, 164, 239);
     border: none;
     margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 14px;
+    margin-bottom: 10px;
+    font-size: 16px;
     color: white;
     border-radius: 2px;
     cursor: pointer;
 }
 
 .login-demo-button {
-    width: 208px;
-    height: 30px;
+    width: 308px;
+    height: 35px;
     background-color: rgb(42, 164, 239);
     border: none;
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 16px;
     color: white;
     border-radius: 2px;
     cursor: pointer;
@@ -68,5 +70,5 @@
 
 .login-sentence {
     margin-top: 10px;
-
+    font-size: 18px;
 }
