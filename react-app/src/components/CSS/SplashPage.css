@@ -1,8 +1,95 @@
-/* .homepage-container {
+.homepage-container {
+    background-image: url(../images/bg-pic.png);
+    background-size: 100% 100%;
+    width: 90vw;
+    height:50vw;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-} */
+.homepage-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    top: 16vw;
+    position: relative;
+    width: 47vw;
+}
 
-.homepage-pic {
-    width: 100%
+
+
+.homepage-signup-title {
+    background-color: rgb(242, 116, 14);
+    border:none;
+    color: white;
+    min-height: 30px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.homepage-signup-no-title {
+    min-height: 30px;
+    font-size: 22px;
+}
+
+
+
+.homepage-allquestions-title {
+    background-color: rgb(10, 149, 255);
+    border:none;
+    color: white;
+    min-height: 30px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.homepage-title-container {
+    top: 26vw;
+    position: relative;
+    width: 47vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.homepage-title {
+    color: white;
+    font-size: 40px;
+    width: auto;
+    text-align: center;
+
+}
+.homepage-developer {
+    color: rgb(242, 116, 14);
+}
+
+.homepage-sub-title-wrapper {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    top: 36vw;
+    position: relative;
+    justify-items: center;
+}
+
+.homepage-sub-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.homepage-sub-title-top {
+    font-size: 24px;
+    margin: 0 auto;
+}
+
+.homepage-sub-title-bottom {
+    width: 12vw;
+    margin: 0 auto;
+    text-align: center;
 
 }
