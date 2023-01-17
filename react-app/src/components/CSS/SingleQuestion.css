@@ -1,14 +1,11 @@
-/* .single-question-wrapper {
-    background-color: white;
-    min-height: 1100px;
+.single-question-wrapper {
     display: flex;
-    flex-direction: column;
-} */
+    flex-direction: row;
+}
 
 .single-question-container {
     min-width: 800px;
     width: 40vw;
-    margin:0 auto;
 }
 
 .single-question-upper {

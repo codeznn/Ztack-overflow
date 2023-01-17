@@ -5,6 +5,7 @@ import { getAllAnswers } from '../../store/answers';
 import questions, { getOneQuestion, removeOneQuestion } from '../../store/questions';
 import CreateAnswer from '../Answer/createAnswer';
 import AllAnswers from '../Answer/getAnswers';
+import SideBar from '../Navigation/SideBar';
 
 import '../CSS/SingleQuestion.css'
 
@@ -91,6 +92,9 @@ const SingleQuestion = () => {
 
     return (
         <div className='single-question-wrapper'>
+            <div className='sidebar-wrapper'>
+                <SideBar />
+            </div>
             <div className='single-question-container'>
             <div className='single-question-upper'>
                 <div className='single-question-title'>{question.title}</div>

@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import { getAllQuestions, getTopQuestions } from '../../store/questions';
 import Footer from '../Navigation/Footer';
 
+import SideBar from '../Navigation/SideBar';
+
 // import "./questions.css";
 
 const TopQuestions = () => {
@@ -74,6 +76,9 @@ const TopQuestions = () => {
 
     return (
         <div className='questions-wrapper'>
+            <div className='sidebar-wrapper'>
+                <SideBar />
+            </div>
         <div className='questions-container'>
             <div className='questions-first'>
                 <div className='questions-top'>

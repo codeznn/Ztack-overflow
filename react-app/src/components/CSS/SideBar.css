@@ -1,0 +1,55 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    width: 8vw;
+    margin-left: 22vw;
+    /* background-color: aqua; */
+    margin-top: 35px;
+    font-size: 16px;
+
+}
+
+.sidebar-home {
+    text-decoration: none;
+    color: gray;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sidebar-public {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    color: gray;
+    cursor: pointer;
+}
+
+.sidebar-questions {
+    text-decoration: none;
+    color: gray;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.sidebar-tags {
+    text-decoration: none;
+    color: gray;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.sidebar-users {
+    text-decoration: none;
+    color: gray;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 30px;
+    cursor: pointer;
+}
