@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getMyQuestions } from "../../store/questions";
 import DeleteAnswer from "../Answer/deleteAnswer";
 import { getMyAnswers } from "../../store/answers";
+import SideBar from '../Navigation/SideBar';
 
 import '../CSS/Profile.css'
 
@@ -29,51 +30,56 @@ const Profile = () => {
       }
 
     return (
-        <div className="profile-container">
-            <div className="profile-user">
-                <div className="profile-pic">
-                    {sessionUser.profileImage && <img src={sessionUser.profileImage} className="profile-userImg"></img>}
-                    {!sessionUser.profileImage && sessionUser.username &&
-                        <div className="profile-no-userImg">{sessionUser.username[0].toUpperCase()}</div>
-                    }
-                </div>
-                <div className="profile-username">{sessionUser.username}</div>
+        <div className="profile-wrapper">
+            <div className='sidebar-wrapper'>
+                <SideBar />
             </div>
-
-            <div className="profile-questions-container">
-                <div className="profile-questions-title">My Questions</div>
-                <div className='profile-questions-single-container'>
-                    {questionArr.map((question) => (
-                        <div key={question.id} className="profile-questions-single-question" style={{ textDecoration: 'none'}}>
-                            <div className='profile-questions-single-question-title'>
-                                <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}} className='profile-single-question-title'>{question.title}</NavLink>
-                            </div>
-                        </div>
-                    ))
-                    }
-                </div>
-
-
-            </div>
-
-            <div className="profile-questions-container">
-                <div className="profile-questions-title">My Answers</div>
-                <div className='profile-questions-single-container'>
-                {answersArr?.map((answer, i) => (
-                <div key={i} className='profile-questions-single-question'>
-                    <div className='profile-questions-single-question-title'>
-                        <NavLink to={`/questions/${answer.Question.id}`} style={{ textDecoration: 'none'}} className='profile-single-question-title'>{answer.Question.title}</NavLink>
-                        <div className='profile-single-answer-content'>{answer.content}</div>
+            <div className="profile-container">
+                <div className="profile-user">
+                    <div className="profile-pic">
+                        {sessionUser.profileImage && <img src={sessionUser.profileImage} className="profile-userImg"></img>}
+                        {!sessionUser.profileImage && sessionUser.username &&
+                            <div className="profile-no-userImg">{sessionUser.username[0].toUpperCase()}</div>
+                        }
                     </div>
+                    <div className="profile-username">{sessionUser.username}</div>
                 </div>
 
-               ))
-               }
-               </div>
+                <div className="profile-questions-container">
+                    <div className="profile-questions-title">My Questions</div>
+                    <div className='profile-questions-single-container'>
+                        {questionArr.map((question) => (
+                            <div key={question.id} className="profile-questions-single-question" style={{ textDecoration: 'none'}}>
+                                <div className='profile-questions-single-question-title'>
+                                    <NavLink to={`/questions/${question.id}`} style={{ textDecoration: 'none'}} className='profile-single-question-title'>{question.title}</NavLink>
+                                </div>
+                            </div>
+                        ))
+                        }
+                    </div>
+
+
+                </div>
+
+                <div className="profile-questions-container">
+                    <div className="profile-questions-title">My Answers</div>
+                    <div className='profile-questions-single-container'>
+                    {answersArr?.map((answer, i) => (
+                    <div key={i} className='profile-questions-single-question'>
+                        <div className='profile-questions-single-question-title'>
+                            <NavLink to={`/questions/${answer.Question.id}`} style={{ textDecoration: 'none'}} className='profile-single-question-title'>{answer.Question.title}</NavLink>
+                            <div className='profile-single-answer-content'>{answer.content}</div>
+                        </div>
+                    </div>
+
+                ))
+                }
+                </div>
+
+                </div>
+
 
             </div>
-
-
         </div>
     )
 }

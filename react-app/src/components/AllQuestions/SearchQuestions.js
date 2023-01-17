@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import searchCoin from '../images/flat magnifying glass.png';
 
 import "../CSS/Questions.css";
+import SideBar from '../Navigation/SideBar';
 
 const SearchQuestions = () => {
     const dispatch = useDispatch();
@@ -71,6 +72,9 @@ const SearchQuestions = () => {
 
     if (questionArr.length === 0) return(
         <div className='questions-wrapper'>
+            <div className='sidebar-wrapper'>
+                <SideBar />
+            </div>
             <div className='questions-container'>
                 <div className='questions-first'>
                     <div className='questions-top'>
@@ -95,6 +99,9 @@ const SearchQuestions = () => {
 
     return (
         <div className='questions-wrapper'>
+            <div className='sidebar-wrapper'>
+                <SideBar />
+            </div>
             <div className='questions-container'>
                 <div className='questions-first'>
                     <div className='questions-top'>

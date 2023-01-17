@@ -6,6 +6,7 @@
 
 .sidebar-wrapper {
     border-right: solid 1px lightgray;
+    width: 30vw;
 }
 
 .questions-container {

@@ -12,8 +12,9 @@ const SideBar = () => {
                 Home
             </NavLink>
             <div className="sidebar-public">PUBLIC</div>
+
             <NavLink to='/questions' exact={true} activeClassName='active' className="sidebar-questions">
-                <i class="fa-regular fa-earth-americas" /> Questions
+            <i class="fa-solid fa-earth-americas"></i> Questions
             </NavLink>
             <NavLink to='/tags' exact={true} activeClassName='active' className="sidebar-tags">
                 Tags
