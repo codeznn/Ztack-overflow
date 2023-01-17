@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { getAllQuestions } from '../../store/questions';
 
 import "../CSS/Questions.css";
+import SideBar from '../Navigation/SideBar';
 
 const AllQuestions = () => {
     const dispatch = useDispatch();
@@ -72,6 +73,9 @@ const AllQuestions = () => {
 
     return (
         <div className='questions-wrapper'>
+            <div className='sidebar-wrapper'>
+                <SideBar />
+            </div>
             <div className='questions-container'>
                 <div className='questions-first'>
                     <div className='questions-top'>

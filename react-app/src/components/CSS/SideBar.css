@@ -1,0 +1,49 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    width: 12vw;
+    margin-left: 18vw;
+    /* background-color: aqua; */
+    margin-top: 35px;
+    font-size: 16px;
+
+}
+
+.sidebar-home {
+    text-decoration: none;
+    color: black;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.sidebar-public {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+
+.sidebar-questions {
+    text-decoration: none;
+    color: black;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+
+.sidebar-tags {
+    text-decoration: none;
+    color: black;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+
+.sidebar-users {
+    text-decoration: none;
+    color: black;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+}

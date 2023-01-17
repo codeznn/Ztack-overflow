@@ -1,13 +1,16 @@
-/* .questions-wrapper {
-    background-color: white;
-    min-height: 1100px;
+.questions-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
-} */
+}
+
+.sidebar-wrapper {
+    border-right: solid 1px lightgray;
+}
+
 .questions-container {
-    width: 40%;
-    margin:0 auto;
+    width: 40vw;
+    /* margin:0 auto; */
     /* background-color:aliceblue; */
 }
 
