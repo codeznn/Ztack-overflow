@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { getAllQuestions } from '../../store/questions';
 
 import "../CSS/Questions.css";
+import Footer from '../Navigation/Footer';
 import SideBar from '../Navigation/SideBar';
 
 const AllQuestions = () => {
@@ -72,6 +73,7 @@ const AllQuestions = () => {
     if (!questionObj) return null;
 
     return (
+        <>
         <div className='questions-wrapper'>
             <div className='sidebar-wrapper'>
                 <SideBar />
@@ -125,6 +127,8 @@ const AllQuestions = () => {
                 </div>
             </div>
         </div>
+        <Footer />
+        </>
     )
 }
 

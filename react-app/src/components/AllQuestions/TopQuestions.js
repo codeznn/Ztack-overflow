@@ -75,6 +75,7 @@ const TopQuestions = () => {
     if (!questionObj) return null;
 
     return (
+        <>
         <div className='questions-wrapper'>
             <div className='sidebar-wrapper'>
                 <SideBar />
@@ -122,6 +123,8 @@ const TopQuestions = () => {
             </div>
         </div>
         </div>
+        <Footer />
+        </>
     )
 }
 
