@@ -115,6 +115,11 @@
 
 }
 
+.fa-caret-up, .fa-caret-down {
+    color: gray;
+    font-size: 30px;
+}
+
 .single-answer-content {
     font-size: 18px;
     margin-bottom: 15px;
