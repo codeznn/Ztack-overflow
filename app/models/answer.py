@@ -24,15 +24,15 @@ class Answer(db.Model):
 #####################################
 
 
-    # def get_votes(self):
-    #     vote_num = 0
+    def get_votes(self):
+        vote_num = 0
 
-    #     for vote in self.votes:
-    #         if vote.isVote == True:
-    #             vote_num += 1
-    #         elif vote.isVote == False:
-    #             vote_num -= 1
-    #     return vote_num
+        for vote in self.votes:
+            if vote.is_vote == True:
+                vote_num += 1
+            elif vote.is_vote == False:
+                vote_num -= 1
+        return vote_num
 
     def to_dict(self):
         return {
@@ -52,7 +52,7 @@ class Answer(db.Model):
             'ownerId': self.owner_id,
             'questionId': self.question_id,
             'content': self.content,
-            # "votesNum": self.get_votes(),
+            "votesNum": self.get_votes(),
             'attachment': self.attachment,
             'codeSnippet': self.code_snippet,
             'createdAt': self.created_at,
