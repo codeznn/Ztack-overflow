@@ -59,6 +59,9 @@ const AllAnswers = ( { questionId, user } ) => {
         <div >
             {answersArr?.map((answer, i) => (
                 <div key={i} className='single-answer'>
+                    <div className='signle-answer-vote-container'>
+                        
+                    </div>
                     <div className='single-answer-content'>{answer.content}</div>
                     <div className='single-answer-detail'>
                         <div className='single-answer-modify'>
