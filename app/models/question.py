@@ -18,8 +18,18 @@ class Question(db.Model):
 # relationship attributes
     user = db.relationship("User", back_populates="questions")
     answers = db.relationship("Answer", back_populates='question', cascade="all, delete")
+    votes = db.relationship("Vote", back_populates='question', cascade="all, delete")
 
 #####################################
+    def get_votes(self):
+        vote_num = 0
+
+        for vote in self.votes:
+            if vote.is_vote == True:
+                vote_num += 1
+            elif vote.is_vote == False:
+                vote_num -= 1
+        return vote_num
 
     def to_dict(self):
         return {
@@ -41,7 +51,7 @@ class Question(db.Model):
             'category': self.category,
             'userName': self.user.username,
             'profileImg': self.user.profilepic_url,
-            'votesNum': 0,
+            'votesNum': self.get_votes(),
             'answersNum': len(self.answers),
             'createdAt': self.created_at,
             'updateAt': self.updated_at,
@@ -54,7 +64,7 @@ class Question(db.Model):
             'title': self.title,
             'body': self.body,
             'category': self.category,
-            'votesNum': 0,
+            'votesNum': self.get_votes(),
             'answersNum': len(self.answers),
             'createdAt': self.created_at,
             'updateAt': self.updated_at,
@@ -69,7 +79,7 @@ class Question(db.Model):
             'category': self.category,
             'userName': self.user.username,
             'profileImg': self.user.profilepic_url,
-            'votesNum': 0,
+            'votesNum': self.get_votes(),
             'answersNum': len(self.answers),
             'createdAt': self.created_at,
             'updateAt': self.updated_at,
