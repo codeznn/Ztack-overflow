@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Question, User, Answer, Vote
+from app.models import db, Question, User, Answer, Vote_answer
 from app.forms import QuestionForm, AnswerForm, VoteForm
 from datetime import datetime
 import random
@@ -68,7 +68,7 @@ def vote_answer(answer_id):
     answer = Answer.query.ger(answer_id)
     if answer.owner_id == current_user.id:
         return {"errors": "You can not vote your own answer!"}, 403
-    vote = Vote.query.filter(Vote.user_id == current_user.id).filter(Vote.answer_id == answer_id)
+    vote = Vote_answer.query.filter(Vote_answer.user_id == current_user.id).filter(Vote_answer.answer_id == answer_id)
 
     form = VoteForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -83,13 +83,13 @@ def vote_answer(answer_id):
             db.session.commit()
             return {"messages": "Vote has been deleted successfully!"}, 200
         else:
-            vote = Vote(
+            vote = Vote_answer(
                 isVote = form.data["isVote"]
             )
             db.session.commit()
             return vote.to_dict(), 201
     else:
-        new_vote = Vote(
+        new_vote = Vote_answer(
             user_id = current_user.id,
             answer_id = answer_id,
             isVote = form.data["isVote"]

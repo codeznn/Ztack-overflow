@@ -18,7 +18,7 @@ class Answer(db.Model):
 # relationship attributes
     user = db.relationship("User", back_populates="answers")
     question = db.relationship("Question", back_populates='answers')
-    votes = db.relationship("Vote", back_populates='answer', cascade="all, delete")
+    vote_answers = db.relationship("Vote_answer", back_populates='answer', cascade="all, delete")
 
 
 #####################################
@@ -27,7 +27,7 @@ class Answer(db.Model):
     def get_votes(self):
         vote_num = 0
 
-        for vote in self.votes:
+        for vote in self.vote_answers:
             if vote.is_vote == True:
                 vote_num += 1
             elif vote.is_vote == False:
