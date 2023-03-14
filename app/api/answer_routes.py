@@ -65,26 +65,26 @@ def delete_answer(answer_id):
 @answer_routes.route("/<int:answer_id>/votes", methods=["POST"])
 @login_required
 def vote_answer(answer_id):
-    answer = Answer.query.ger(answer_id)
+    answer = Answer.query.get(answer_id)
     if answer.owner_id == current_user.id:
         return {"errors": "You can not vote your own answer!"}, 403
-    vote = Vote_answer.query.filter(Vote_answer.user_id == current_user.id).filter(Vote_answer.answer_id == answer_id)
-
+    vote = Vote_answer.query.filter(Vote_answer.user_id == current_user.id).filter(Vote_answer.answer_id == answer_id).all()
     form = VoteForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+    print("=====", form.data)
 
     if vote:
-        if vote.isVote == True and form.data["isVote"] == True:
+        if vote.is_vote == True and form.data["isVote"] == True:
             db.session.delete(vote)
             db.session.commit()
             return {"messages": "Vote has been deleted successfully!"}, 200
-        elif vote.isVote == False and form.data["isVote"] == False:
+        elif vote.is_vote == False and form.data["isVote"] == False:
             db.session.delete(vote)
             db.session.commit()
             return {"messages": "Vote has been deleted successfully!"}, 200
         else:
             vote = Vote_answer(
-                isVote = form.data["isVote"]
+                is_vote = form.data["is_vote"]
             )
             db.session.commit()
             return vote.to_dict(), 201
@@ -92,7 +92,7 @@ def vote_answer(answer_id):
         new_vote = Vote_answer(
             user_id = current_user.id,
             answer_id = answer_id,
-            isVote = form.data["isVote"]
+            is_vote = form.data["is_vote"]
         )
 
         db.session.add(new_vote)

@@ -103,6 +103,7 @@ export const getOneQuestion = (id) => async (dispatch) => {
 }
 
 export const addOneQustion = (question) => async (dispatch) => {
+
     try {
         const response = await fetch(`/api/questions`, {
             method: "POST",

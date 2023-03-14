@@ -22,6 +22,6 @@ class Vote_question(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'answerId': self.answer_id,
+            'questionId': self.question_id,
             'isVote': self.is_vote,
         }

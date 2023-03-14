@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, useHistory } from "react-router-dom";
 import { getAllAnswers, removeOneAnswer, resetAnswers } from '../../store/answers';
+import VoteAnswer from '../Votes/VoteAnswer';
 import DeleteAnswer from './deleteAnswer';
 
 const AllAnswers = ( { questionId, user } ) => {
@@ -60,9 +61,7 @@ const AllAnswers = ( { questionId, user } ) => {
             {answersArr?.map((answer, i) => (
                 <div key={i} className='single-answer'>
                     <div className='signle-answer-vote-container'>
-                        <i class="fa-solid fa-caret-up"></i>
-                        <div className='signle-answer-vote-num'>{answer.votesNum}</div>
-                        <i class="fa-solid fa-caret-down"></i>
+                        <VoteAnswer votesNum={answer.votesNum} answerId={answer.id}/>
                     </div>
                     <div className='single-answer-content'>{answer.content}</div>
                     <div className='single-answer-detail'>
