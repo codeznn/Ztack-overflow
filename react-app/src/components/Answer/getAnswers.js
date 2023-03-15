@@ -17,41 +17,26 @@ const AllAnswers = ( { questionId, user } ) => {
     }, [dispatch])
 
     const getAnsweredTime = (time) => {
-        let beginDate = new Date(time);
-        let endDate = new Date()
+        const beginDate = new Date(time);
+        const endDate = new Date();
 
-        let day = parseInt((endDate - beginDate) / (1000 * 60 * 60 * 24))
-        let hour = parseInt((endDate - beginDate) / (1000 * 60 * 60))
-        let min = parseInt((endDate - beginDate) / (1000 * 60 ))
-        let sec = parseInt((endDate - beginDate) / 1000)
+        const diffTime = (endDate - beginDate) / 1000;
 
-        if (sec < 60) {
-            if (sec === 1) {
-                return sec + " sec ago"
-            } else {
-                return sec + " secs ago"
-            }
-        } else if ( min < 59) {
-            if (min === 1) {
-                return min + " min ago"
-            } else {
-                return min + " mins ago"
-            }
-        } else if ( hour < 24) {
-            if (hour === 1) {
-                return hour + " hour ago"
-            } else {
-                return hour + " hours ago"
-            }
-        } else {
-            if (day === 1) {
-                return day + " day ago"
-            } else {
-                return day + " days ago"
-            }
-        }
+        return diffTime < 60
+          ? `${Math.floor(diffTime)} sec${diffTime === 1 ? "" : "s"} ago`
+          : diffTime < 60 * 60
+          ? `${Math.floor(diffTime / 60)} min${Math.floor(
+              diffTime / 60
+            ) === 1 ? "" : "s"} ago`
+          : diffTime < 60 * 60 * 24
+          ? `${Math.floor(diffTime / 60 / 60)} hour${Math.floor(
+              diffTime / 60 / 60
+            ) === 1 ? "" : "s"} ago`
+          : `${Math.floor(diffTime / 60 / 60 / 24)} day${Math.floor(
+              diffTime / 60 / 60 / 24
+            ) === 1 ? "" : "s"} ago`;
+      };
 
-    }
 
 
 

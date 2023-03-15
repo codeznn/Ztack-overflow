@@ -9,7 +9,8 @@ class Vote_question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=True)
-    is_vote = db.Column(db.Boolean, nullable=False)
+    up = db.Column(db.Boolean, nullable=False)
+    down = db.Column(db.Boolean, nullable=False)
 
 # relationship attributes
     user = db.relationship("User", back_populates="vote_questions")
@@ -23,5 +24,6 @@ class Vote_question(db.Model):
             'id': self.id,
             'userId': self.user_id,
             'questionId': self.question_id,
-            'isVote': self.is_vote,
+            'up': self.up,
+            'down': self.down,
         }

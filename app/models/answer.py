@@ -10,7 +10,6 @@ class Answer(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     question_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=False)
     content = db.Column(db.String(200000), nullable=False)
-    attachment = db.Column(db.String(1000), nullable=True)
     code_snippet = db.Column(db.String(200000), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
@@ -19,6 +18,7 @@ class Answer(db.Model):
     user = db.relationship("User", back_populates="answers")
     question = db.relationship("Question", back_populates='answers')
     vote_answers = db.relationship("Vote_answer", back_populates='answer', cascade="all, delete")
+    comment_answers = db.relationship("Comment_answer", back_populates='answer', cascade="all, delete")
 
 
 #####################################
@@ -40,7 +40,6 @@ class Answer(db.Model):
             'ownerId': self.owner_id,
             'questionId': self.question_id,
             'content': self.content,
-            'attachment': self.attachment,
             'codeSnippet': self.code_snippet,
             'createdAt': self.created_at,
             'updateAt': self.updated_at,
@@ -53,7 +52,6 @@ class Answer(db.Model):
             'questionId': self.question_id,
             'content': self.content,
             "votesNum": self.get_votes(),
-            'attachment': self.attachment,
             'codeSnippet': self.code_snippet,
             'createdAt': self.created_at,
             'updateAt': self.updated_at,
@@ -70,7 +68,6 @@ class Answer(db.Model):
             'ownerId': self.owner_id,
             'questionId': self.question_id,
             'content': self.content,
-            'attachment': self.attachment,
             'codeSnippet': self.code_snippet,
             'createdAt': self.created_at,
             'updateAt': self.updated_at,

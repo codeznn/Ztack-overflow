@@ -3,4 +3,5 @@ from wtforms import BooleanField
 from wtforms.validators import DataRequired
 
 class VoteForm(FlaskForm):
-    is_vote = BooleanField('isVote', validators=[DataRequired()])
+    up = BooleanField('up', validators=[DataRequired()])
+    down = BooleanField('up', validators=[DataRequired()])
