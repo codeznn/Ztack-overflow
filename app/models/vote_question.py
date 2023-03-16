@@ -8,9 +8,9 @@ class Vote_question(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    question_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=True)
-    up = db.Column(db.Boolean, nullable=False)
-    down = db.Column(db.Boolean, nullable=False)
+    question_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=False)
+    up = db.Column(db.Boolean, nullable=True)
+    down = db.Column(db.Boolean, nullable=True)
 
 # relationship attributes
     user = db.relationship("User", back_populates="vote_questions")

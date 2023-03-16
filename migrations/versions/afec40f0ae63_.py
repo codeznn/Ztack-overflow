@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5e0acf466977
+Revision ID: afec40f0ae63
 Revises: 
-Create Date: 2023-03-14 16:23:20.748090
+Create Date: 2023-03-15 18:24:11.928114
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5e0acf466977'
+revision = 'afec40f0ae63'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -54,9 +54,9 @@ def upgrade():
     op.create_table('vote_questions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('question_id', sa.Integer(), nullable=True),
-    sa.Column('up', sa.Boolean(), nullable=False),
-    sa.Column('down', sa.Boolean(), nullable=False),
+    sa.Column('question_id', sa.Integer(), nullable=False),
+    sa.Column('up', sa.Boolean(), nullable=True),
+    sa.Column('down', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['question_id'], ['questions.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -75,9 +75,9 @@ def upgrade():
     op.create_table('vote_answers',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('answer_id', sa.Integer(), nullable=True),
-    sa.Column('up', sa.Boolean(), nullable=False),
-    sa.Column('down', sa.Boolean(), nullable=False),
+    sa.Column('answer_id', sa.Integer(), nullable=False),
+    sa.Column('up', sa.Boolean(), nullable=True),
+    sa.Column('down', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['answer_id'], ['answers.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')

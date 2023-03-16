@@ -11,15 +11,15 @@ const downVote = (id) => ({
     id
 })
 
-export const upVoteAnswer = (answerId, isVote) => async (dispatch) => {
+export const upVoteAnswer = (answerId, up) => async (dispatch) => {
     try {
-        console.log("in vote thunk:", isVote)
-        const response = await fetch(`/api/answers/${answerId}/votes`, {
+        console.log("in vote thunk:", up)
+        const response = await fetch(`/api/votes/${answerId}/up`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(isVote)
+            body: JSON.stringify(up)
         });
 
         if (response.ok) {

@@ -31,7 +31,7 @@ def get_vote_question(question_id):
 # create/delete an up vote for a question
 @vote_routes.route("/<int:question_id>/up")
 @login_required
-def create_vote_question(question_id):
+def create_vote_up_question(question_id):
     question = Question.query.get(question_id)
     if question.owner_id == current_user.id:
         return {"errors": "You can not vote your own question!"}, 403
@@ -59,7 +59,7 @@ def create_vote_question(question_id):
 # create/delete an down vote for a question
 @vote_routes.route("/<int:question_id>/up")
 @login_required
-def create_vote_question(question_id):
+def create_vote_down_question(question_id):
     question = Question.query.get(question_id)
     if question.owner_id == current_user.id:
         return {"errors": "You can not vote your own question!"}, 403
@@ -106,9 +106,10 @@ def get_vote_answer(answer_id):
     return {"voteNum": total_num}
 
 # create/delete an up vote for a answer
-@vote_routes.route("/<int:answer_id>/up")
+@vote_routes.route("/<int:answer_id>/up", methods=["POST"])
 @login_required
-def create_vote_question(answer_id):
+def create_vote_up_answer(answer_id):
+    print("+++++", answer_id)
     answer = Answer.query.get(answer_id)
     if answer.owner_id == current_user.id:
         return {"errors": "You can not vote your own question!"}, 403
@@ -116,16 +117,13 @@ def create_vote_question(answer_id):
 
     form = VoteForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+    print("++++", form.data)
 
-    if vote.up:
-        db.session.delete(vote)
-        db.session.commit()
-        return {"messages": "Vote has been deleted successfully!"}, 200
-    else:
+    if not vote:
         new_vote = Vote_answer(
             user_id = current_user.id,
-            question_id = answer_id,
-            up = form.data["is_vote"]
+            answer_id = answer_id,
+            up = form.data["up"]
         )
 
         db.session.add(new_vote)
@@ -133,10 +131,16 @@ def create_vote_question(answer_id):
 
         return new_vote.to_dict(),201
 
+    else:
+        if vote.up:
+            db.session.delete(vote)
+            db.session.commit()
+            return {"messages": "Vote has been deleted successfully!"}, 200
+
 # create/delete an down vote for a answer
 @vote_routes.route("/<int:answer_id>/up")
 @login_required
-def create_vote_question(answer_id):
+def create_vote_down_answer(answer_id):
     answer = Answer.query.get(answer_id)
     if answer.owner_id == current_user.id:
         return {"errors": "You can not vote your own question!"}, 403
@@ -152,7 +156,7 @@ def create_vote_question(answer_id):
     else:
         new_vote = Vote_answer(
             user_id = current_user.id,
-            question_id = answer_id,
+            answer_id = answer_id,
             down = form.data["is_vote"]
         )
 

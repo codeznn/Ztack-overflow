@@ -28,9 +28,9 @@ class Answer(db.Model):
         vote_num = 0
 
         for vote in self.vote_answers:
-            if vote.is_vote == True:
+            if vote.up:
                 vote_num += 1
-            elif vote.is_vote == False:
+            elif vote.down:
                 vote_num -= 1
         return vote_num
 

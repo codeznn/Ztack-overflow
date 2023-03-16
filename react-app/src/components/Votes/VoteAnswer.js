@@ -6,15 +6,15 @@ const VoteAnswer = ({ votesNum, answerId }) => {
     const dispatch = useDispatch();
 
     const upClick = () => {
-        const isVote = {"isVote": true}
-        console.log("in vote component:", isVote)
-        dispatch(upVoteAnswer(answerId, isVote))
+        const up = {"up": true}
+        console.log("in vote component:", up)
+        dispatch(upVoteAnswer(answerId, up))
 
     }
 
     const downClick = () => {
-        const isVote = {"isVote": false}
-        dispatch(downVoteAnswer(answerId, isVote))
+        const down = true
+        dispatch(downVoteAnswer(answerId, down))
 
     }
 
