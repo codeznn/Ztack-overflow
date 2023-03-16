@@ -27,3 +27,20 @@ class Vote_question(db.Model):
             'up': self.up,
             'down': self.down,
         }
+
+    def to_dict_with_question(self):
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'Question': {
+                'id': self.question.id,
+                'ownerId': self.question.owner_id,
+                'title': self.question.title,
+                'body': self.question.body,
+                'category': self.question.category,
+                'createdAt': self.question.created_at,
+                'updateAt': self.question.updated_at,
+            },
+            'up': self.up,
+            'down': self.down,
+        }

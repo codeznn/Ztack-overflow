@@ -27,3 +27,19 @@ class Vote_answer(db.Model):
             'up': self.up,
             'down': self.down,
         }
+
+    def to_dict_with_question(self):
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'Answer': {
+                'id': self.answer.id,
+                'ownerId': self.answer.owner_id,
+                'content': self.answer.content,
+                'codeSnippet': self.answer.codeSnippet,
+                'createdAt': self.answer.created_at,
+                'updateAt': self.answer.updated_at,
+            },
+            'up': self.up,
+            'down': self.down,
+        }

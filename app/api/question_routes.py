@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Question, User, Answer, Vote_question
-from app.forms import QuestionForm, AnswerForm, VoteForm
+from app.models import db, Question, User, Answer
+from app.forms import QuestionForm, AnswerForm
 from datetime import datetime
 import random
 from .auth_routes import validation_errors_to_error_messages
