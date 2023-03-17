@@ -91,7 +91,7 @@ const AllQuestions = () => {
                         <div key={question.id} className="questions-single-question" style={{ textDecoration: 'none'}}>
                             <div className='questions-single-question-top'>
                                 <div className='questions-single-question-left'>
-                                    {/* <div>{question.votesNum} votes</div> */}
+                                    <div>{question.votesNum} votes</div>
                                     <div>{getAnswerNum(question.answersNum)} </div>
                                 </div>
                                 <div className='questions-single-question-right'>
