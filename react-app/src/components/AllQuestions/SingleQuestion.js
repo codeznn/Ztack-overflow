@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, Link } from "react-router-dom";
 import { getAllAnswers } from '../../store/answers';
 import questions, { getOneQuestion, removeOneQuestion } from '../../store/questions';
+import { getQuestionVotes, upVoteQuestion, downVoteQuestion } from '../../store/votes';
 import CreateAnswer from '../Answer/createAnswer';
 import AllAnswers from '../Answer/getAnswers';
 import SideBar from '../Navigation/SideBar';
@@ -89,6 +90,29 @@ const SingleQuestion = () => {
         }
     }
 
+    const upClick = async(e) => {
+        if (sessionUser && sessionUser.id == question.ownerId) {
+            alert("You can not vote for your own answer!")
+        }
+        const up = {"up": true}
+        console.log("in vote component:", up)
+        const response = await dispatch(upVoteQuestion(questionId, up))
+        if (response) {
+            dispatch(getQuestionVotes(questionId))
+        }
+    }
+
+    const downClick = async(e) => {
+        if (sessionUser && sessionUser.id == question.ownerId) {
+            alert("You can not vote for your own answer!")
+        }
+        const down = {"down": true}
+        const response = await dispatch(downVoteQuestion(questionId, down))
+        if (response) {
+            dispatch(getQuestionVotes(questionId))
+        }
+    }
+
 
     return (
         <div className='single-question-wrapper'>
@@ -97,6 +121,18 @@ const SingleQuestion = () => {
             </div>
             <div className='single-question-container'>
             <div className='single-question-upper'>
+                <div>
+                    <div>
+                        <button class="fa-solid fa-caret-up" onClick={upClick}></button>
+                    </div>
+
+                    <div className='signle-question-vote-num'>{question.votesNum}</div>
+
+                    <div>
+                        <button class="fa-solid fa-caret-down" onClick={downClick}></button>
+                    </div>
+                </div>
+
                 <div className='single-question-title'>{question.title}</div>
                 <div className='single-question-askbutton'>
                     <button type='button' onClick={handleAskClick} className='single-question-askbutton'>Ask Question</button>

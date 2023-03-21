@@ -28,7 +28,7 @@ class Vote_answer(db.Model):
             'down': self.down,
         }
 
-    def to_dict_with_question(self):
+    def to_dict_with_answer(self):
         return {
             'id': self.id,
             'userId': self.user_id,

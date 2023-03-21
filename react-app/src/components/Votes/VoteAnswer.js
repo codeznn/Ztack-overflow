@@ -1,17 +1,31 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { downVoteAnswer, getAnswerNum, upVoteAnswer } from '../../store/votes';
+import { downVoteAnswer, getAnswerVotes, upVoteAnswer } from '../../store/votes';
 
 const VoteAnswer = ({ ownerId, answerId, forVotesNum}) => {
     const dispatch = useDispatch();
-    const aftVotesNum = useSelector(state => state.votes.voteAnswerNum.voteNum);
+    const aftVotesObj = useSelector(state => state.votes.votesAnswer);
+    const aftVotes = Object.values(aftVotesObj)
     const currUser = useSelector(state => state.session.user)
-    console.log(forVotesNum)
-    console.log(aftVotesNum)
+    console.log("======== forVotesNum", forVotesNum)
+    console.log("======== aftVotes", aftVotes)
 
-    // useEffect(() => {
-    //     dispatch(getAnswerNum(answerId))
-    // }, [dispatch])
+    const getVotesNum = (aftvotes) => {
+        let voteNum = 0;
+        let votes = aftVotes
+        for (let i = 0; i < votes.length; i++) {
+          const vote = votes[i];
+            if (vote.up) {
+                voteNum++;
+            }
+            else if (vote.down) {
+                voteNum--;
+            }
+        }
+
+        return voteNum;
+      }
+      console.log("---------votesNum", getVotesNum(aftVotes))
 
     const upClick = async(e) => {
         if (currUser && currUser.id == ownerId) {
@@ -21,7 +35,7 @@ const VoteAnswer = ({ ownerId, answerId, forVotesNum}) => {
         console.log("in vote component:", up)
         const response = await dispatch(upVoteAnswer(answerId, up))
         if (response) {
-            dispatch(getAnswerNum(answerId))
+            dispatch(getAnswerVotes(answerId))
         }
     }
 
@@ -32,7 +46,7 @@ const VoteAnswer = ({ ownerId, answerId, forVotesNum}) => {
         const down = {"down": true}
         const response = await dispatch(downVoteAnswer(answerId, down))
         if (response) {
-            dispatch(getAnswerNum(answerId))
+            dispatch(getAnswerVotes(answerId))
         }
     }
 
@@ -44,7 +58,7 @@ const VoteAnswer = ({ ownerId, answerId, forVotesNum}) => {
                 <button class="fa-solid fa-caret-up" onClick={upClick}></button>
             </div>
 
-            <div className='signle-answer-vote-num'>{!aftVotesNum ? forVotesNum : aftVotesNum}</div>
+            <div className='signle-answer-vote-num'>{!aftVotes ? forVotesNum : getVotesNum(aftVotes)}</div>
 
             <div>
                 <button class="fa-solid fa-caret-down" onClick={downClick}></button>
