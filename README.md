@@ -33,8 +33,7 @@ Live Site: [Ztack overflow](https://ztack-overflow.onrender.com)
 ![image](https://user-images.githubusercontent.com/99756315/211102487-8b548f4a-05b8-4d0a-88f3-78cd552b1a98.png)
 ![image](https://user-images.githubusercontent.com/99756315/211102290-24138e12-b1d0-4204-8796-02a92ab4e778.png)
 
-## Log In/ Sign Up Modal
-![image](https://user-images.githubusercontent.com/99756315/211102142-ab9da1cb-e7e3-422a-8c4c-f155ba2edcee.png)
+## Sign Up Modal
 ![image](https://user-images.githubusercontent.com/99756315/211102199-d5bd946b-2547-4bd0-85d3-05722ed781ec.png)
 
 
