@@ -1,7 +1,7 @@
 const UP_VOTE = 'votes/up';
 const DOWN_VOTE = 'votes/down';
 const GET_VOTE_ANSWER = 'votes/answerVote';
-const GET_VOTE_QUESTION = 'votes/answerVote';
+const GET_VOTE_QUESTION = 'votes/questionVote';
 
 const upVote = (id) => ({
     type: UP_VOTE,
@@ -80,12 +80,12 @@ export const downVoteAnswer = (answerId, down) => async (dispatch) => {
 }
 
 export const getQuestionVotes = (id) => async (dispatch) => {
-    console.log("======in Reducer-id", id)
+    console.log("======in getQuestionVotes Reducer-id", id)
     const response = await fetch(`/api/votes/question/${id}`)
 
     if (response.ok) {
         const votes = await response.json();
-        console.log("======in Reducer-votes", votes)
+        console.log("======in getQuestionVotes Reducer-votes", votes)
         dispatch(getVotesQuestion(votes))
         return votes
     }
@@ -157,7 +157,7 @@ const votes = (state = initialState, action) => {
             action.votes.Votes.forEach(vote => {
                 newState.votesQuestion[vote.id] = vote
             })
-            console.log("======in state", newState)
+            console.log("======in getQuestionVotes state", newState)
             return newState
         default:
             return state

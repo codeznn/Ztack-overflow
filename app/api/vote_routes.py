@@ -13,7 +13,7 @@ vote_routes = Blueprint('votes', __name__)
 def get_myvotes_questions():
     votes = Vote_question.query.filter(Vote_question.userId == current_user.id).all()
     return {"Votes": [
-        votes.to_dict_with_question() for vote in votes
+        vote.to_dict_with_question() for vote in votes
     ]}, 200
 
 # get votes of a question
