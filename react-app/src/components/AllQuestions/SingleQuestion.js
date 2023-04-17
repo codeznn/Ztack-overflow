@@ -12,21 +12,16 @@ import '../CSS/SingleQuestion.css'
 
 const SingleQuestion = () => {
     const { questionId } = useParams();
-    //console.log("======in singleQuestion components-questionId:", questionId)
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user)
     const question = useSelector(state => state.questions.singleQuestion)
-    //console.log("======in singleQuestion components-question:", question)
     const voteQuestionNum = useSelector(state => state.questions.singleQuestion.votesNum)
     const answerNum = useSelector(state => state.questions.singleQuestion.answersNum)
     const answers = useSelector(state => state.answers.answers)
 
-    //console.log("===========", answers)
-
     useEffect(() => {
         dispatch(getOneQuestion(questionId))
-        // dispatch(getAllAnswers(questionId))
         dispatch(getQuestionVotes(questionId))
     }, [dispatch, questionId, answers, voteQuestionNum])
 
@@ -101,9 +96,9 @@ const SingleQuestion = () => {
         const up = {"up": true}
         console.log("in vote component:", up)
         const response = await dispatch(upVoteQuestion(questionId, up))
-        // if (response) {
-        //     dispatch(getQuestionVotes(questionId))
-        // }
+        if (response) {
+            dispatch(getOneQuestion(questionId))
+        }
     }
 
     const downClick = async(e) => {
@@ -115,9 +110,9 @@ const SingleQuestion = () => {
         }
         const down = {"down": true}
         const response = await dispatch(downVoteQuestion(questionId, down))
-        // if (response) {
-        //     dispatch(getQuestionVotes(questionId))
-        // }
+        if (response) {
+            dispatch(getOneQuestion(questionId))
+        }
     }
 
 

@@ -46,7 +46,7 @@ const AllAnswers = ( { questionId, user } ) => {
             {answersArr?.map((answer, i) => (
                 <div key={i} className='single-answer'>
                     <div className='signle-answer-vote-container'>
-                        <VoteAnswer ownerId={answer.ownerId} answerId={answer.id} forVotesNum={answer.votesNum}/>
+                        <VoteAnswer ownerId={answer.ownerId} answerId={answer.id} forVotesNum={answer.votesNum} questionId={questionId}/>
                     </div>
                     <div className='single-answer-content'>{answer.content}</div>
                     <div className='single-answer-detail'>

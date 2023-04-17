@@ -24,12 +24,11 @@ const getVotesQuestion = (votes) => ({
 })
 
 export const getAnswerVotes = (id) => async (dispatch) => {
-    console.log("======in Reducer-id", id)
+
     const response = await fetch(`/api/votes/answer/${id}`)
 
     if (response.ok) {
         const votes = await response.json();
-        console.log("======in Reducer-votes", votes)
         dispatch(getVotesAnswer(votes))
         return votes
     }
@@ -48,7 +47,6 @@ export const upVoteAnswer = (answerId, up) => async (dispatch) => {
 
         if (response.ok) {
             const newVote = await response.json();
-            console.log("======in Reducer-newVote", newVote)
             return newVote
         }
 
@@ -70,7 +68,6 @@ export const downVoteAnswer = (answerId, down) => async (dispatch) => {
 
         if (response.ok) {
             const newVote = await response.json();
-            console.log("======in Reducer-newVote", newVote)
             return newVote
         }
 
@@ -85,7 +82,6 @@ export const getQuestionVotes = (id) => async (dispatch) => {
 
     if (response.ok) {
         const votes = await response.json();
-        console.log("======in getQuestionVotes Reducer-votes", votes)
         dispatch(getVotesQuestion(votes))
         return votes
     }
@@ -104,7 +100,6 @@ export const upVoteQuestion = (questionId, up) => async (dispatch) => {
 
         if (response.ok) {
             const newVote = await response.json();
-            console.log("======in Reducer-newVote", newVote)
             return newVote
         }
 
@@ -126,7 +121,6 @@ export const downVoteQuestion = (questionId, down) => async (dispatch) => {
 
         if (response.ok) {
             const newVote = await response.json();
-            console.log("======in Reducer-newVote", newVote)
             return newVote
         }
 
@@ -149,7 +143,6 @@ const votes = (state = initialState, action) => {
             action.votes.Votes.forEach(vote => {
                 newState.votesAnswer[vote.id] = vote
             })
-            console.log("======in state", newState)
             return newState
 
         case GET_VOTE_QUESTION:
@@ -157,7 +150,6 @@ const votes = (state = initialState, action) => {
             action.votes.Votes.forEach(vote => {
                 newState.votesQuestion[vote.id] = vote
             })
-            console.log("======in getQuestionVotes state", newState)
             return newState
         default:
             return state

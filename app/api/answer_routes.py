@@ -17,6 +17,16 @@ def get_my_answers():
         answer.to_dict_with_question() for answer in answers
     ]}, 200
 
+# get one answer by answerId
+@answer_routes.route("/<int:answer_id>")
+def get_one_answers(answer_id):
+    answer = Answer.query.get(answer_id)
+
+    if answer:
+        return answer.to_dict_with_user()
+    else:
+        return {"error": "Answer couldn't be found", "statusCode": 404}
+
 # update an answer
 @answer_routes.route("/<int:answer_id>", methods=["PUT"])
 @login_required
@@ -59,6 +69,3 @@ def delete_answer(answer_id):
         return {"messages": "Answer has been deleted successfully!"}, 200
     else:
         return {"errors": "You are not the owner of this answer."}, 403
-
-
-
