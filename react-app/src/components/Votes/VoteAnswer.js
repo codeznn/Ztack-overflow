@@ -28,6 +28,9 @@ const VoteAnswer = ({ ownerId, answerId, forVotesNum}) => {
       console.log("---------votesNum", getVotesNum(aftVotes))
 
     const upClick = async(e) => {
+        if (!currUser) {
+            alert("You should be logged in first!")
+        }
         if (currUser && currUser.id == ownerId) {
             alert("You can not vote for your own answer!")
         }
@@ -40,6 +43,9 @@ const VoteAnswer = ({ ownerId, answerId, forVotesNum}) => {
     }
 
     const downClick = async(e) => {
+        if (!currUser) {
+            alert("You should be logged in first!")
+        }
         if (currUser && currUser.id == ownerId) {
             alert("You can not vote for your own answer!")
         }

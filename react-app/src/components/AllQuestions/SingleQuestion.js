@@ -92,8 +92,11 @@ const SingleQuestion = () => {
     }
 
     const upClick = async(e) => {
+        if (!sessionUser) {
+            alert("You should be logged in first!")
+        }
         if (sessionUser && sessionUser.id == question.ownerId) {
-            alert("You can not vote for your own answer!")
+            alert("You can not vote for your own question!")
         }
         const up = {"up": true}
         console.log("in vote component:", up)
@@ -104,8 +107,11 @@ const SingleQuestion = () => {
     }
 
     const downClick = async(e) => {
+        if (!sessionUser) {
+            alert("You should be logged in first!")
+        }
         if (sessionUser && sessionUser.id == question.ownerId) {
-            alert("You can not vote for your own answer!")
+            alert("You can not vote for your own question!")
         }
         const down = {"down": true}
         const response = await dispatch(downVoteQuestion(questionId, down))
