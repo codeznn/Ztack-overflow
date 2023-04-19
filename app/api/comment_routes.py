@@ -67,3 +67,17 @@ def get_comment_answer(answer_id):
 # update comment ofan answer
 
 # delete comment of an answer
+@comment_routes.route("/<int:comment_id>", method=["DELETE"])
+@login_required
+def delete_comment(comment_id):
+    deleted_comment = Comment_answer.query.get(comment_id)
+
+    if not deleted_comment:
+        return {"errors": "Comment couldn't be found."}, 404
+
+    if deleted_comment.owner_id == current_user.id:
+        db.session.delete(deleted_comment)
+        db.session.commit()
+        return {"messages": "Comment has been deleted successfully!"}, 200
+    else:
+        return {"errors": "You are not the owner of this Comment."}, 403
