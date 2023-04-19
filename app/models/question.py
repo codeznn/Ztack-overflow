@@ -19,7 +19,7 @@ class Question(db.Model):
     user = db.relationship("User", back_populates="questions")
     answers = db.relationship("Answer", back_populates='question', cascade="all, delete")
     vote_questions = db.relationship("Vote_question", back_populates='question', cascade="all, delete")
-
+    comment_questions = db.relationship("Comment_question", back_populates='question', cascade="all, delete")
 #####################################
     def get_votes(self):
         vote_num = 0

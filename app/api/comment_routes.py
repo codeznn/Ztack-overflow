@@ -24,7 +24,7 @@ def get_comment_question(question_id):
         comment.to_dict() for comment in comments
     ]}, 200
 
-# create comment of a question
+# create comment of a question(on question_routes)
 
 # update comment of a question
 
@@ -37,7 +37,7 @@ def delete_comment(comment_id):
     if not deleted_comment:
         return {"errors": "Comment couldn't be found."}, 404
 
-    if deleted_comment.owner_id == current_user.id:
+    if deleted_comment.user_id == current_user.id:
         db.session.delete(deleted_comment)
         db.session.commit()
         return {"messages": "Comment has been deleted successfully!"}, 200
@@ -62,7 +62,7 @@ def get_comment_answer(answer_id):
         comment.to_dict() for comment in comments
     ]}, 200
 
-# create comment of an answer
+# create comment of an answer(on answer_routes)
 
 # update comment ofan answer
 
@@ -75,7 +75,7 @@ def delete_comment(comment_id):
     if not deleted_comment:
         return {"errors": "Comment couldn't be found."}, 404
 
-    if deleted_comment.owner_id == current_user.id:
+    if deleted_comment.user_id == current_user.id:
         db.session.delete(deleted_comment)
         db.session.commit()
         return {"messages": "Comment has been deleted successfully!"}, 200

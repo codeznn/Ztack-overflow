@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Question, User, Answer
-from app.forms import QuestionForm, AnswerForm
+from app.models import db, Question, User, Answer, Comment_question
+from app.forms import QuestionForm, AnswerForm, CommentForm
 from datetime import datetime
 import random
 from .auth_routes import validation_errors_to_error_messages
@@ -158,6 +158,37 @@ def create_answer(question_id):
     if form.validate_on_submit():
         data = Answer(
             owner_id = current_user.id,
+            question_id = question_id,
+            content = form.data["content"],
+            created_at = datetime.now(),
+            updated_at = datetime.now(),
+        )
+        db.session.add(data)
+        db.session.commit()
+        return data.to_dict_with_user(), 201
+    else:
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+# create a comment of one question
+@question_routes.route("/<int:question_id>/comments", methods=["POST"])
+@login_required
+def create_comment(question_id):
+    question = Question.query.get(question_id)
+    if not question:
+        return {"errors": "Question couldn't be found."}, 404
+
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    existed_comments = Comment_question.query.filter(Comment_question.question_id == question_id).all()
+    if existed_comments:
+        for comment in existed_comments:
+            if comment.user_id == current_user.id:
+                return {"errors": ["error: You have already left a comment for this question!"]}, 400
+
+    if form.validate_on_submit():
+        data = Comment_question(
+            user_id = current_user.id,
             question_id = question_id,
             content = form.data["content"],
             created_at = datetime.now(),

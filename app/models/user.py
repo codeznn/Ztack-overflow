@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     vote_questions = db.relationship("Vote_question", back_populates="user", cascade="all, delete")
     vote_answers = db.relationship("Vote_answer", back_populates="user", cascade="all, delete")
     comment_answers = db.relationship("Comment_answer", back_populates="user", cascade="all, delete")
-
+    comment_questions = db.relationship("Comment_question", back_populates="user", cascade="all, delete")
     @property
     def password(self):
         return self.hashed_password

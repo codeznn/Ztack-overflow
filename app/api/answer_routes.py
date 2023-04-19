@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Question, User, Answer
-from app.forms import QuestionForm, AnswerForm
+from app.models import db, Question, User, Answer, Comment_answer
+from app.forms import QuestionForm, AnswerForm, CommentForm
 from datetime import datetime
 import random
 from .auth_routes import validation_errors_to_error_messages
@@ -69,3 +69,34 @@ def delete_answer(answer_id):
         return {"messages": "Answer has been deleted successfully!"}, 200
     else:
         return {"errors": "You are not the owner of this answer."}, 403
+
+# create a comment of one answer
+@answer_routes.route("/<int:answer_id>/comments", methods=["POST"])
+@login_required
+def create_comment(answer_id):
+    answer = Answer.query.get(answer_id)
+    if not answer:
+        return {"errors": "Answer couldn't be found."}, 404
+
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    existed_comments = Comment_answer.query.filter(Comment_answer.answer_id == answer_id).all()
+    if existed_comments:
+        for comment in existed_comments:
+            if comment.user_id == current_user.id:
+                return {"errors": ["error: You have already left a comment for this answer!"]}, 400
+
+    if form.validate_on_submit():
+        data = Comment_answer(
+            user_id = current_user.id,
+            answer_id = answer_id,
+            content = form.data["content"],
+            created_at = datetime.now(),
+            updated_at = datetime.now(),
+        )
+        db.session.add(data)
+        db.session.commit()
+        return data.to_dict_with_user(), 201
+    else:
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 400
