@@ -27,6 +27,27 @@ def get_comment_question(question_id):
 # create comment of a question(on question_routes)
 
 # update comment of a question
+@comment_routes.route("/question/<int:comment_id>")
+@login_required
+def update_comment(comment_id):
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    edit_comment = Comment_question.query.get(comment_id)
+    if not edit_comment:
+        return {"errors": "Comment couldn't be found."}, 404
+
+    if edit_comment.user_id != current_user.id:
+        return {"errors": "You are not the owner of this comment."}, 403
+
+    if form.validate_on_submit():
+        edit_comment.content = form.data["content"]
+
+        db.session.commit()
+        return edit_comment.to_dict(), 200
+    else:
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
 
 # delete comment of a question
 @comment_routes.route("/<int:comment_id>", method=["DELETE"])
@@ -65,6 +86,27 @@ def get_comment_answer(answer_id):
 # create comment of an answer(on answer_routes)
 
 # update comment ofan answer
+@comment_routes.route("/answer/<int:comment_id>")
+@login_required
+def update_comment(comment_id):
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    edit_comment = Comment_answer.query.get(comment_id)
+    if not edit_comment:
+        return {"errors": "Comment couldn't be found."}, 404
+
+    if edit_comment.user_id != current_user.id:
+        return {"errors": "You are not the owner of this comment."}, 403
+
+    if form.validate_on_submit():
+        edit_comment.content = form.data["content"]
+
+        db.session.commit()
+        return edit_comment.to_dict(), 200
+    else:
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
 
 # delete comment of an answer
 @comment_routes.route("/<int:comment_id>", method=["DELETE"])
