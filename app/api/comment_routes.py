@@ -28,6 +28,12 @@ def get_mycomments_questions():
 
 
 # get comments of current user for answers
+@comment_routes.route("/current/answers")
+def get_mycomments_answers():
+    comments = Comment_answer.query.filter(Comment_answer.user_id == current_user.id).all()
+    return {"Comments": [
+        comment.to_dict_with_answer() for comment in comments
+    ]}, 200
 
 # get comments of an answer
 
