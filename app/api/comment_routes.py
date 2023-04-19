@@ -17,6 +17,12 @@ def get_mycomments_questions():
     ]}, 200
 
 # get comments of a question
+@comment_routes.route("/question/<int:question_id>")
+def get_comment_question(question_id):
+    comments = Comment_question.query.filter(Comment_question.question_id == question_id).all()
+    return {"Comments": [
+        comment.to_dict() for comment in comments
+    ]}, 200
 
 # create comment of a question
 
