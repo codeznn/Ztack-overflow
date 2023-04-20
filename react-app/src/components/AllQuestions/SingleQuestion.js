@@ -165,6 +165,11 @@ const SingleQuestion = () => {
                 </div>
             </div>
 
+            <div className='single-question-comment-wrapper'>
+                <div className='single-question-comment-container'></div>
+                <div className='single-question-add-comment-container'></div>
+            </div>
+
             <div className='single-question-answer-wrapper'>
                 {question.answersNum !== 0 && <div className='single-question-answerNum'>{getAnswerNum(question.answersNum)} </div>}
                 <div className='single-question-answer-container'>
