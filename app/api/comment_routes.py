@@ -27,7 +27,7 @@ def get_comment_question(question_id):
 # create comment of a question(on question_routes)
 
 # update comment of a question
-@comment_routes.route("/question/<int:comment_id>")
+@comment_routes.route("/question/<int:comment_id>", method=["PUT"])
 @login_required
 def update_comment(comment_id):
     form = CommentForm()
@@ -86,7 +86,7 @@ def get_comment_answer(answer_id):
 # create comment of an answer(on answer_routes)
 
 # update comment ofan answer
-@comment_routes.route("/answer/<int:comment_id>")
+@comment_routes.route("/answer/<int:comment_id>", method=["PUT"])
 @login_required
 def update_comment(comment_id):
     form = CommentForm()

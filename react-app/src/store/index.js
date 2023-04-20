@@ -3,13 +3,15 @@ import thunk from 'redux-thunk';
 import session from './session'
 import questions from './questions';
 import answers from './answers';
-import votes from './votes'
+import votes from './votes';
+import comments from './comments';
 
 const rootReducer = combineReducers({
   session,
   questions,
   answers,
   votes,
+  comments,
 });
 
 

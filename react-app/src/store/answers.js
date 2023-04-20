@@ -53,7 +53,6 @@ export const getMyAnswers = () => async (dispatch) => {
 
 export const addOneAnswer = (answer, questionId) => async (dispatch) => {
     try {
-        console.log("=====in Reducer", answer)
         const response = await fetch(`/api/questions/${questionId}/answers`, {
             method: "POST",
             headers: {
@@ -64,13 +63,11 @@ export const addOneAnswer = (answer, questionId) => async (dispatch) => {
 
         if (response.ok) {
             const newAnswer = await response.json();
-            console.log("=====in Reducer", newAnswer)
             dispatch(addAnswer(newAnswer));
             return newAnswer
         } else {
             const error = await response.json()
-            console.log("=====in Reducer-error", error)
-                return error
+            return error
         }
 
     } catch(error) {
@@ -80,7 +77,6 @@ export const addOneAnswer = (answer, questionId) => async (dispatch) => {
 
 export const updateOneAnswer = (answer, answerId) => async (dispatch) => {
     try {
-        console.log("=====in Reducer", answer)
         const response = await fetch(`/api/answers/${answerId}`, {
             method: "PUT",
             headers: {
@@ -92,7 +88,6 @@ export const updateOneAnswer = (answer, answerId) => async (dispatch) => {
         if (response.ok) {
             const newAnswer = await response.json();
             dispatch(addAnswer(newAnswer));
-            console.log("=====in Reducer", newAnswer)
             return newAnswer
         }
 
@@ -107,7 +102,6 @@ export const removeOneAnswer = (answerId) => async (dispatch) => {
     });
 
     if (response.ok) {
-        console.log("====in Reducer before dispatch")
         dispatch(removeAnswer(answerId))
         return ("Answer has been deleted successfully!")
     }
@@ -151,9 +145,7 @@ const answers = (state = initialState, action) => {
 
         case REMOVE_ANSWER:
             newState = newState = { ...state, answers: { ...state.answers}}
-            console.log("=====in before REMOVE_ANSWER-newState:", newState)
             delete newState.answers[action.answerId]
-            console.log("=====in after REMOVE_ANSWER-newState:", newState)
             return newState
 
         default:
