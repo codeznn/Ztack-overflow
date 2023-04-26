@@ -6,6 +6,7 @@ import questions, { getOneQuestion, removeOneQuestion } from '../../store/questi
 import { getQuestionVotes, upVoteQuestion, downVoteQuestion } from '../../store/votes';
 import CreateAnswer from '../Answer/createAnswer';
 import AllAnswers from '../Answer/getAnswers';
+import QuestionComments from '../Comments/QuestionComments';
 import SideBar from '../Navigation/SideBar';
 
 import '../CSS/SingleQuestion.css'
@@ -166,7 +167,9 @@ const SingleQuestion = () => {
             </div>
 
             <div className='single-question-comment-wrapper'>
-                <div className='single-question-comment-container'></div>
+                <div className='single-question-comment-container'>
+                    <QuestionComments questionId={questionId} user={sessionUser}/>
+                </div>
                 <div className='single-question-add-comment-container'></div>
             </div>
 
