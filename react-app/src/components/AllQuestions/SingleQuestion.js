@@ -95,7 +95,6 @@ const SingleQuestion = () => {
             alert("You can not vote for your own question!")
         }
         const up = {"up": true}
-        console.log("in vote component:", up)
         const response = await dispatch(upVoteQuestion(questionId, up))
         if (response) {
             dispatch(getOneQuestion(questionId))

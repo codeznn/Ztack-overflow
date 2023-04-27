@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory, Link } from "react-router-dom";
+import { addOneComment } from '../../store/comments';
 
 const QuestionComments = ({questionId, user}) => {
     const [showCommentBox, setShowCommentBox] = useState(false)
@@ -15,13 +16,13 @@ const QuestionComments = ({questionId, user}) => {
             alert("You should be logged in first!")
         }
 
-
         setShowCommentBox(!showCommentBox)
-
 
     }
 
     const handleSubmit = async(e) => {
+        const cont = {"content": content}
+        const response = await dispatchEvent(addOneComment(questionId, cont))
 
     }
 
