@@ -21,7 +21,7 @@ const QuestionComments = ({questionId, user}) => {
     }
 
     const handleSubmit = async(e) => {
-        const cont = {"content": content}
+        const cont = {content}
         const response = await dispatchEvent(addOneComment(questionId, cont))
 
     }
