@@ -32,7 +32,7 @@ const QuestionComments = ({questionId, user}) => {
             <button className='question-comment-add' onClick={addComment}>Add a comment</button>
         </div>
         <div className='question-comment-box'>
-            {showCommentBox ?
+            {showCommentBox &&
             <div>
                 <textarea className='question-comment-box-textarea'
                     type='text'
@@ -42,7 +42,6 @@ const QuestionComments = ({questionId, user}) => {
                 />
                 <button className='question-comment-box-submit' onClick={handleSubmit}>Submit</button>
             </div>
-            : null
             }
         </div>
         </>
