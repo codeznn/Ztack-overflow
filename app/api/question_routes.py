@@ -179,7 +179,6 @@ def create_comment(question_id):
 
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-
     existed_comments = Comment_question.query.filter(Comment_question.question_id == question_id).all()
     if existed_comments:
         for comment in existed_comments:

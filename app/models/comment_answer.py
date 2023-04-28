@@ -46,3 +46,17 @@ class Comment_answer(db.Model):
             'createdAt': self.created_at,
             'updateAt': self.updated_at,
         }
+
+    def to_dict_with_user(self):
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'content': self.content,
+            'createdAt': self.created_at,
+            'updateAt': self.updated_at,
+            'User': {
+                'id': self.user.id,
+                'userName': self.user.username,
+                'profileImage': self.user.profilepic_url
+            }
+        }

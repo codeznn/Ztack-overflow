@@ -7,7 +7,7 @@ const QuestionComments = ({questionId, user}) => {
     const [showCommentBox, setShowCommentBox] = useState(false)
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
-    console.log("showCommentBox", showCommentBox)
+    const dispatch = useDispatch()
 
 
 
@@ -21,8 +21,9 @@ const QuestionComments = ({questionId, user}) => {
     }
 
     const handleSubmit = async(e) => {
-        const cont = {content}
-        const response = await dispatchEvent(addOneComment(questionId, cont))
+        const comment = {content}
+        console.log("content:", comment)
+        const response = await dispatch(addOneComment(comment, questionId))
 
     }
 
