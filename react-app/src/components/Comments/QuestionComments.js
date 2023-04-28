@@ -25,6 +25,9 @@ const QuestionComments = ({questionId, user}) => {
         console.log("content:", comment)
         const response = await dispatch(addOneComment(comment, questionId))
 
+        setContent("")
+        setErrors([])
+        setShowCommentBox(false)
     }
 
 
@@ -36,6 +39,7 @@ const QuestionComments = ({questionId, user}) => {
         <div className='question-comment-box'>
             {showCommentBox &&
             <div>
+                <div></div>
                 <textarea className='question-comment-box-textarea'
                     type='text'
                     value={content}
